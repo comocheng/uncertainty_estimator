@@ -1,0 +1,29 @@
+! Species         Shape    LJ-depth  LJ-diam   DiplMom   Polzblty  RotRelaxNum Data     
+! Name            Index    epsilon/k_B sigma     mu        alpha     Zrot      Source   
+Ar                  0     136.500     3.330     0.000     0.000     0.000    ! NOx2018
+He                  0      10.200     2.576     0.000     0.000     0.000    ! NOx2018
+Ne                  0     148.600     3.758     0.000     0.000     0.000    ! Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the fallback method! Try improving transport databases!
+N2                  1      97.530     3.621     0.000     1.760     4.000    ! NOx2018
+ethane(1)           2     252.300     4.302     0.000     0.000     1.500    ! NOx2018
+[CH3](4)            2     144.000     3.800     0.000     0.000     0.000    ! NOx2018
+C[CH2](5)           2     252.300     4.302     0.000     0.000     1.500    ! NOx2018
+C(3)                2     141.400     3.746     0.000     2.600    13.000    ! NOx2018
+[H](6)              0     145.000     2.050     0.000     0.000     0.000    ! NOx2018
+C2H4(9)             2     280.800     3.971     0.000     0.000     1.500    ! NOx2018
+[H][H](13)          1      38.000     2.920     0.000     0.790   280.000    ! NOx2018
+C2H3(14)            2     209.000     4.100     0.000     0.000     1.000    ! NOx2018
+C#C(20)             1     209.000     4.100     0.000     0.000     2.500    ! NOx2018
+C2H2(27)            2     209.000     4.100     0.000     0.000     2.500    ! NOx2018
+[CH2]CC(16)         2     266.800     4.982     0.000     0.000     1.000    ! NIST_Fluorine
+C4H7(24)            2     348.453     5.429     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=452.54 K, Pc=41.09 bar (from Joback method)
+[CH2]C1CC1(46)      2     366.039     5.309     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=475.38 K, Pc=46.15 bar (from Joback method)
+C4H7(29)            2     348.453     5.429     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=452.54 K, Pc=41.09 bar (from Joback method)
+C4H7(49)            2     359.053     5.460     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=466.30 K, Pc=41.62 bar (from Joback method)
+C4H6(25)            2     357.002     5.180     0.000     0.000     1.000    ! GRI-Mech
+C4H6(200)           2     381.310     5.150     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=495.21 K, Pc=52.66 bar (from Joback method)
+[C]1CCC1(255)       2     531.400     4.687     0.000     0.000     0.000    ! Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the fallback method! Try improving transport databases!
+C4H6(47)            2     359.053     5.460     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=466.30 K, Pc=41.62 bar (from Joback method)
+CC1[CH]C1(86)       2     366.039     5.309     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=475.38 K, Pc=46.15 bar (from Joback method)
+C4H6(115)           2     360.421     5.272     0.000     0.000     0.000    ! Epsilon & sigma estimated with Tc=468.08 K, Pc=46.4 bar (from Joback method)
+C4H5(31)            2     357.002     5.180     0.000     0.000     1.000    ! GRI-Mech
+C3H5(28)            2     260.001     4.850     0.000     0.000     1.000    ! GRI-Mech
