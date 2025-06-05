@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.7
+#       jupytext_version: 1.15.2
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -137,12 +137,13 @@ rvol = area * reactor_len * porosity
 # catalyst area in one reactor
 cat_area = cat_area_per_vol * rvol
 # -
-length
+
 
 # # PFR
 
 
 # +
+# Initial gas-phase part
 T = t_in
 x_CH4 = 0.296
 x_O2 = 0.147
@@ -153,7 +154,6 @@ print(X)
 gas.TPX = 273.15, ct.one_atm, X  # need to initialize mass flow rate at STP
 
 mass_flow_rate = flow_rate * gas.density_mass
-
 # mass_flow_rate = velocity * gas.density * area * porosity
 
 gas.TPX = T, ct.one_atm, X
@@ -163,17 +163,13 @@ surf.coverages = f'{surf.species_names[i_x]}: 1.0'
 # create a new reactor
 # r = ct.IdealGasReactor(gas)
 r = ct.FlowReactor(gas)
-r.area = cat_area
-r.surface_area_to_volume_ratio = cat_area / rvol
+r.area = area
+r.surface_area_to_volume_ratio = 0
 r.mass_flow_rate = mass_flow_rate
 r.energy_enabled = True
 
-
-rsurf = ct.ReactorSurface(surf, r)
-
-
+# rsurf = ct.ReactorSurface(surf, r)
 sim = ct.ReactorNet([r])
-
 
 output_data = []
 n = 0
@@ -188,7 +184,6 @@ while sim.distance < length:
         + list(rsurf.kinetics.coverages)  # use rsurf.kinetics.coverages not surf.coverages
     )
 
-# +
 dist_array = np.array([data[0] for data in output_data]) * 1000.0
 temperatures = [data[1] for data in output_data]
 pressures = [data[2] for data in output_data]
@@ -196,6 +191,72 @@ pressures = [data[2] for data in output_data]
 gas_out = np.zeros((len(output_data), len(output_data[0][3:])))
 for i in range(len(output_data)):
     gas_out[i] = output_data[i][3:]
+
+# +
+plt.plot(dist_array, gas_out[:, i_O2], label='_no_label', color=colors[0], linestyle='--', linewidth=linewidth2)
+plt.plot(dist_array, gas_out[:, i_CH4], label='_no_label', color=colors[1], linestyle='--', linewidth=linewidth2)
+plt.plot(dist_array, gas_out[:, i_H2], label='_no_label', color=colors[2], linestyle='--', linewidth=linewidth2)
+plt.plot(dist_array, gas_out[:, i_CO], label='_no_label', color=colors[3], linestyle='--', linewidth=linewidth2)
+plt.plot(dist_array, gas_out[:, i_CO2], label='_no_label', color=colors[4], linestyle='--', linewidth=linewidth2)
+
+
+# -
+
+
+
+
+
+# +
+T = t_in
+x_CH4 = 0.296
+x_O2 = 0.147
+x_Ar = 1.0 - x_CH4 - x_O2
+
+X = f'{gas.species_names[i_CH4]}: {x_CH4}, {gas.species_names[i_O2]}: {x_O2}, {gas.species_names[i_Ar]}: {x_Ar}'
+print(X)
+gas.TPX = 273.15, ct.one_atm, X  # need to initialize mass flow rate at STP
+
+mass_flow_rate = flow_rate * gas.density_mass
+# mass_flow_rate = velocity * gas.density * area * porosity
+
+gas.TPX = T, ct.one_atm, X
+surf.TP = T, ct.one_atm
+surf.coverages = f'{surf.species_names[i_x]}: 1.0'
+
+# create a new reactor
+# r = ct.IdealGasReactor(gas)
+r = ct.FlowReactor(gas)
+r.area = cat_area
+r.surface_area_to_volume_ratio = cat_area / rvol
+r.mass_flow_rate = mass_flow_rate
+r.energy_enabled = True
+
+rsurf = ct.ReactorSurface(surf, r)
+sim = ct.ReactorNet([r])
+
+output_data = []
+n = 0
+
+while sim.distance < length:
+    sim.step()
+    n += 1
+
+    output_data.append(
+        [sim.distance, r.T, r.thermo.P]
+        + list(r.thermo.X)  # use r.thermo.X not gas.X
+        + list(rsurf.kinetics.coverages)  # use rsurf.kinetics.coverages not surf.coverages
+    )
+
+dist_array = np.array([data[0] for data in output_data]) * 1000.0
+temperatures = [data[1] for data in output_data]
+pressures = [data[2] for data in output_data]
+
+gas_out = np.zeros((len(output_data), len(output_data[0][3:])))
+for i in range(len(output_data)):
+    gas_out[i] = output_data[i][3:]
+# -
+
+
 
 
 # +
@@ -226,8 +287,10 @@ plt.plot(dist_array, gas_out[:, i_C2H4], label='C2H4', color=colors[5], linestyl
 ax1 = plt.gca()
 ylim = ax1.get_ylim()
 # Mark the catalyst extent
-plt.plot([dist_array[on_catalyst], dist_array[on_catalyst]], [0, 1.0], linestyle='--', color='xkcd:grey')
-plt.plot([dist_array[off_catalyst], dist_array[off_catalyst]], [0, 1.0], linestyle='--', color='xkcd:grey')
+catalyst length 10mm, but it doesn't say where.  let's guess at 1 cm?
+
+plt.plot([10, 10], [0, 1.0], linestyle='--', color='xkcd:grey')
+plt.plot([20, 20], [0, 1.0], linestyle='--', color='xkcd:grey')
 plt.ylim(ylim)
 
 ax2 = ax1.twinx()
@@ -239,7 +302,7 @@ ax2.plot(df['Distance (mm)'].values, df['Temperature (K)'].values + 273.15, labe
 ax2.plot(dist_array, temperatures, label='Temperature', color='k', linestyle=':', linewidth=linewidth2)
 ax2.set_ylabel('Temperature (K)')
 
-# ax1.set_xlim([6, 25])
+ax1.set_xlim([6, 25])
 ax1.set_xlabel('Distance (mm)')
 ax1.set_ylabel('Flow (mol/min)')
 ax1.legend(bbox_to_anchor=(1.15, 0.5))

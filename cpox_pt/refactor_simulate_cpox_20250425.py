@@ -23,12 +23,15 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 # %matplotlib inline
+# -
+
+
 
 # +
 # Rh111
 # mech_yaml = './cpox_pt_20241020/chem_annotated-gas.yaml'
-# mech_yaml = './cpox_rh_emily/chem_annotated-gas.yaml'
-mech_yaml = './cpox_rh_20241112/handpicked/chem_annotated-gas.yaml'
+mech_yaml = './cpox_rh_emily/chem_annotated-gas.yaml'
+# mech_yaml = './cpox_rh_20241112/handpicked/chem_annotated-gas.yaml'
 rh_data = '/home/moon/uncertainty_estimator/cpox_pt/horn_data/rh_profiles_smooth.csv'
 df = pd.read_csv(rh_data)
 
@@ -38,8 +41,13 @@ df = pd.read_csv(rh_data)
 # pt_data = '/home/moon/uncertainty_estimator/cpox_pt/horn_data/pt_profiles_smooth.csv'
 # df = pd.read_csv(pt_data)
 
-gas = ct.Solution(mech_yaml, 'gas')
-surf = ct.Interface(mech_yaml, 'surface1', [gas])
+# gas = ct.Solution(mech_yaml, 'gas')
+# surf = ct.Interface(mech_yaml, 'surface1', [gas])
+
+
+gas, _ = ct.import_phases(mech_yaml, ["gas", "surface1"])
+surf = ct.Interface(mech_yaml, 'surface1')  # new way
+
 print(f'This mechanism contains {gas.n_species} gas species and {surf.n_species} surface species')
 print(f'This mechanism contains {gas.n_reactions} gas reactions and {surf.n_reactions} surface reactions')
 
@@ -140,7 +148,6 @@ cat_area = cat_area_per_vol * rvol
 
 
 
-# +
 def monolithFull(gas, surf, T):
     x_CH4 = 0.296
     x_O2 = 0.147
@@ -204,8 +211,6 @@ def monolithFull(gas, surf, T):
     return data_out
 
 
-# -
-
 a = monolithFull(gas, surf, t_in)
 gas_out, surf_out, gas_names, surf_names, dist_array, T_array = a
 
@@ -257,6 +262,12 @@ ax1.set_ylabel('Flow (mol/min)')
 ax1.legend(bbox_to_anchor=(1.15, 0.5))
 
 # -
+
+
+
+
+
+
 
 
 
