@@ -18,13 +18,13 @@ logging.getLogger().setLevel(logging.DEBUG)
 # constants/objects to set up once at the beginning and then reuse for each simulation
 # these are the same for all simulations and do not need to be reloaded each time
 N_REACTORS = 1001
-MIN_SIM_DIST = -0.005  # in meters
-MAX_SIM_DIST = 0.020  # in meters
+MIN_SIM_DIST = -0.004  # in meters
+MAX_SIM_DIST = 0.015  # in meters
 TOTAL_PFR_LEN = MAX_SIM_DIST - MIN_SIM_DIST
 INDIVIDUAL_CSTR_LEN = TOTAL_PFR_LEN / N_REACTORS
 dist_array = np.linspace(MIN_SIM_DIST, MAX_SIM_DIST, N_REACTORS)
 
-TIMEOUT_SECONDS = 60  # seconds to wait before timing out a simulation
+TIMEOUT_SECONDS = 30  # seconds to wait before timing out a simulation
 
 # set up the temperature profile as a function of distance along the reactor
 pt_data = '../../cpox_pt/horn_data/pt_profiles_smooth.csv'
@@ -82,11 +82,11 @@ def get_i_thing(ref_composition, phase):
             return i
     assert False, f"Could not find species with composition {ref_composition} in phase {phase.name}"
 
-def increase_enthalpy(phase, species_index, increase_enthalpy_J_per_kmol):
-    """Helper function for increasing the enthalpy of a species in a Cantera phase by a specified amount (in J/kmol)"""
+def increase_enthalpy(phase, species_index, increase_enthalpy_J_per_mol):
+    """Helper function for increasing the enthalpy of a species in a Cantera phase by a specified amount (in J/mol)"""
     data_copy = copy.deepcopy(phase.species()[species_index].input_data)
     for i in range(len(data_copy['thermo']['data'])):
-        data_copy['thermo']['data'][i][5] += increase_enthalpy_J_per_kmol / ct.gas_constant
+        data_copy['thermo']['data'][i][5] += increase_enthalpy_J_per_mol * 1000.0 / ct.gas_constant  # Cantera needs J / kmol
     new_sp = ct.Species().from_dict(data_copy)
     phase.modify_species(species_index, new_sp)
 
