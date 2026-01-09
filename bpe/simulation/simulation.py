@@ -12,6 +12,8 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
+logging.basicConfig()
+logging.getLogger().setLevel(logging.DEBUG)
 
 # constants/objects to set up once at the beginning and then reuse for each simulation
 # these are the same for all simulations and do not need to be reloaded each time
@@ -31,6 +33,7 @@ distances = (df['Distance (mm)'] - 10.0) / 1000.0  # ignore the 10mm of no/catal
 exp_Ts = df['Temperature (K)']
 temperature_function = scipy.interpolate.interp1d(distances, exp_Ts, fill_value='extrapolate')
 temperature_profile = temperature_function(dist_array)
+use_temperature_profile = True
 
 # set up the catalyst on/off indices
 CAT_ON_INDEX = np.argmin(np.abs(dist_array - 0))
@@ -43,7 +46,6 @@ POROSITY = 0.81  # Monolith channel porosity, from Horn ref 17 sec 2.2.2
 CAT_AREA_PER_VOL = 16000  # made-up
 FLOW_RATE_SLPM = 4.7  # slpm
 FLOW_RATE = FLOW_RATE_SLPM * 0.001 / 60  # m^3/s
-TOT_FLOW = 0.208  # from Horn 2007, constant inlet flow rate in mol/min, equivalent to 4.7 slpm
 velocity = FLOW_RATE / CROSS_SECTION_AREA  # m/s
 residence_time = INDIVIDUAL_CSTR_LEN / velocity # unit in s
 individual_cstr_vol = CROSS_SECTION_AREA * INDIVIDUAL_CSTR_LEN * POROSITY
@@ -90,26 +92,26 @@ def increase_enthalpy(phase, species_index, increase_enthalpy_J_per_kmol):
 
 
 def run_simulation(
-    mech_file=None,
+    mech_yaml=None,
     gas=None,
     surf=None,
-    parameters=None,
-    temperature_profile=None,
+    surf_thermo_perturb=None,
+    surf_kinetics_perturb=None,
 ):
     """Run a simulation of the Horn CPOX experiment
 
     Parameters
     ----------
-    mech_file : str
+    mech_yaml : str
         Path to the Cantera mechanism file
     gas : cantera.Solution
         Cantera gas object
     surf : cantera.Interface
         Cantera surface object
-    parameters : dict
-        Dictionary of parameters for the simulation. Species name is the key and the value is the amount to perturb
-    temperature_profile : scipy.interpolate.interp1d
-        Interpolating function for the temperature profile as a function of time
+    surf_thermo_perturb : dict
+        key is index of the species in the surface phase, value is the amount to perturb the enthalpy in J/kmol
+    surf_kinetics_perturb : dict
+        key is index of the reaction in the surface phase, value is the multiplier to apply to the reaction rate
         
     Returns
     -------
@@ -122,15 +124,19 @@ def run_simulation(
         assert isinstance(gas, ct.Solution), "gas must be a Cantera Solution object"
         assert isinstance(surf, ct.Interface), "surf must be a Cantera Interface object"
         logging.debug("Using provided gas and surface objects for simulation")
-    elif mech_file is not None:
-        gas = ct.Solution(mech_file)
-        surf = ct.Interface(mech_file, "surface1", [gas])
-        logging.debug(f"Loaded mechanism file: {mech_file}")
+    elif mech_yaml is not None:
+        gas = ct.Solution(mech_yaml)
+        surf = ct.Interface(mech_yaml, "surface1", [gas])
+        logging.debug(f"Loaded mechanism file: {mech_yaml}")
     else:
         raise ValueError("Either gas and surf objects or a mechanism file must be provided")
     
-    # You should probably use the temperature profile
-    use_temperature_profile = temperature_profile is not None
+
+    # Apply perturbations to the surface thermodynamics
+    if surf_thermo_perturb:
+        for index in surf_thermo_perturb.keys():
+            increase_enthalpy(surf, index, surf_thermo_perturb[index])
+            logging.debug(f"Increased enthalpy of surface species {surf.species_names[index]} by {surf_thermo_perturb[index]} J/kmol")
     
     # Get indices of key species
     i_Ar = get_i_thing({'Ar': 1.0}, gas)
@@ -194,7 +200,6 @@ def run_simulation(
             surf.TD = temperature_profile[n], surf.TD[1]
             r.syncState()
             upstream.syncState()
-
         else:
             gas.TDY = r.thermo.TDY
             upstream.syncState()
@@ -203,6 +208,13 @@ def run_simulation(
         if n == CAT_ON_INDEX:
             # turn the surface reactions on as we enter the catalyst region
             surf.set_multiplier(1.0)
+
+            # apply kinetic perturbations to the surface reactions
+            if surf_kinetics_perturb:
+                for index in surf_kinetics_perturb.keys():
+                    surf.set_multiplier(surf_kinetics_perturb[index], index)
+                    logging.debug(f"Set multiplier of surface reaction {surf.reactions()[index].equation} to {surf_kinetics_perturb[index]}")
+
         elif n == CAT_OFF_INDEX:
             # turn the surface reactions off as we exit the catalyst region
             surf.set_multiplier(0.0)
@@ -214,7 +226,7 @@ def run_simulation(
             if isinstance(e, TimeoutException):
                 logging.error(f"Simulation timed out at reactor {n}")
                 # return the results up to this point
-                return gas_out
+                return gas_out, surf_out, gas_rates, surf_rates
             else:
                 logging.error(f"Cantera error at reactor {n}: {e}")
             raise e
@@ -222,9 +234,9 @@ def run_simulation(
         
         kmole_flow_rate = mass_flow_rate / gas.mean_molecular_weight  # kmol/s
         gas_out[n, :] = 1000 * 60 * kmole_flow_rate * gas.X.copy()  # molar flow rate in moles/minute
-        surf_out[n] = surf.X.copy()
-        gas_rates[n] = gas.net_rates_of_progress
-        surf_rates[n] = surf.net_rates_of_progress
+        surf_out[n, :] = surf.X.copy()
+        gas_rates[n, :] = gas.net_rates_of_progress
+        surf_rates[n, :] = surf.net_rates_of_progress
         # T_array[n] = surf.T
         
         # Reset the alarm
@@ -359,6 +371,7 @@ def plot_top_n_gas_reactions(result, phase, n=10, outfile=None, xlim=None, ylim=
     if isinstance(phase, str):
         phase = ct.Solution(phase)
     plot_top_n(result, phase, n=n, outfile=outfile, species=False, title='Gas Reactions', xlim=xlim, ylim=ylim)
+
 def plot_top_n_surface_reactions(result, phase, n=10, outfile=None, xlim=None, ylim=None):
     """Helper function for plotting the top n surface reactions from the PFR run"""
     if isinstance(phase, str):
