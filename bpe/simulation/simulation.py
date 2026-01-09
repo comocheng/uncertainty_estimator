@@ -136,7 +136,7 @@ def run_simulation(
     if surf_thermo_perturb:
         for index in surf_thermo_perturb.keys():
             increase_enthalpy(surf, index, surf_thermo_perturb[index])
-            logging.debug(f"Increased enthalpy of surface species {surf.species_names[index]} by {surf_thermo_perturb[index]} J/kmol")
+            logging.debug(f"Increased enthalpy of surface species {surf.species_names[index]} by {surf_thermo_perturb[index]} J/mol")
     
     # Get indices of key species
     i_Ar = get_i_thing({'Ar': 1.0}, gas)

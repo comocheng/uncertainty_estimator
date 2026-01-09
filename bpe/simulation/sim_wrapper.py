@@ -4,7 +4,8 @@ import numpy as np
 # TODO move this hard coding to its proper place in the setup script
 
 # hard code the indices of the parameters? Don't want to be looking this up inside the simulation wrapper
-my_prior_species_indices = [5, 3, 1, 7, 9]
+my_prior_species_indices = [5, 3, 1, 7, 9]  # shouldn't be hard coded here
+my_prior_reaction_indices = [0, 1, 3]
 my_output_gas_species_indices = [3, 4, 6, 7, 8, 5]
 
 # Make hardcoded list of distance indices to copy into your simulation_wrapper (maybe this can be a global later...)
@@ -24,12 +25,17 @@ def simulation_wrapper(params):
     mech_yaml = '/home/moon/uncertainty_estimator/cpox_pt/cpox_pt_20251229/cantera/chem_annotated_noCH4X.yaml'
 
     thermo_perturb = {}
-    for i, param in enumerate(params):
+    for i, param in enumerate(params[:len(my_prior_species_indices)]):
         thermo_perturb[my_prior_species_indices[i]] = param  # expecting units of J/mol
+
+    kinetics_perturb = {}
+    for i, param in enumerate(params[len(my_prior_species_indices):]):
+        kinetics_perturb[my_prior_reaction_indices[i]] = np.float_power(10.0, param)  # expecting units of multiplier
 
     gas_out, surf_out, gas_rates, surf_rates = simulation.run_simulation(
         mech_yaml,
         surf_thermo_perturb=thermo_perturb,
+        surf_kinetics_perturb=kinetics_perturb,
     )
 
     # extract the results for the species of interest and the distances

@@ -15,6 +15,8 @@ with open(experimental_yaml_file) as f:
 with open(prior_yaml_file) as f:
     prior_data = yaml.safe_load(f)
 
+prior_labels = prior_data['species_names'] + prior_data['reaction_equations']
+
 
 # get global info about the indices for key species
 # TODO make sure this is only defined in one place
@@ -57,14 +59,14 @@ PEUQSE.UserInput.responses['responses_observed'] = experimental_y_values
 PEUQSE.UserInput.responses['responses_observed_uncertainties'] = experimental_y_uncertainties
 
 # plot options
-PEUQSE.UserInput.simulated_response_plot_settings['x_label'] = "x"
-PEUQSE.UserInput.simulated_response_plot_settings['y_label'] = ["y1", "y2", "y3", "y4", "y5", "y6"]
+PEUQSE.UserInput.simulated_response_plot_settings['x_label'] = "Distance (m)"
+PEUQSE.UserInput.simulated_response_plot_settings['y_label'] = gas_names_order
 
 
-PEUQSE.UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = prior_data['species_names']
+PEUQSE.UserInput.model['parameterNamesAndMathTypeExpressionsDict'] = prior_labels
 
 # model priors
-PEUQSE.UserInput.model['InputParameterPriorValues'] = [prior_data[key] for key in prior_data['species_names']]
+PEUQSE.UserInput.model['InputParameterPriorValues'] = [prior_data[key] for key in prior_data['species_names'] + prior_data['reaction_equations']]
 PEUQSE.UserInput.model['InputParametersPriorValuesUncertainties'] = prior_data['cov_J2_mol2']
 
 
