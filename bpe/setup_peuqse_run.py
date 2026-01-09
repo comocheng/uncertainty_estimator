@@ -19,18 +19,20 @@ def get_i_thing(ref_composition, phase):
 
 # ----------------- input params - change these for your run -----------------
 # vvvvvvvvvv
-mech_yaml = '/home/moon/uncertainty_estimator/cpox_pt/cpox_pt_20251229/cantera/chem_annotated_noCH4X.yaml'
+mech_yaml = '/home/harris.se/chem_annotated_noCH4X.yaml'
 
 # vvvvvvvvvv
-working_dir = '/home/moon/uncertainty_estimator/bpe/simulation/'
-assert not os.path.exists(working_dir), f"Working directory {working_dir} already exists. Please choose a different one or delete it.")
+working_dir = '/scratch/harris.se/guassian_scratch/my_kinetics_bpe0'
+assert not os.path.exists(working_dir), f"Working directory {working_dir} already exists. Please choose a different one or delete it."
 os.makedirs(working_dir)
 experimental_yaml_file = os.path.join(working_dir, 'experiment.yaml')
 prior_yaml_file = os.path.join(working_dir, 'prior.yaml')
 
 
-base_run_peuqse_script = '/home/moon/uncertainty_estimator/bpe/simulation/run_peuqse.py'
-shutil.copy(base_run_peuqse_script, os.path.join(working_dir, 'run_peuqse.py'))
+base_run_peuqse_py_script = './simulation/run_peuqse.py'
+base_run_peuqse_sh_script = './simulation/run_peuqse.sh'
+shutil.copy(base_run_peuqse_py_script, os.path.join(working_dir, 'run_peuqse.py'))
+shutil.copy(base_run_peuqse_sh_script, os.path.join(working_dir, 'run_peuqse.sh'))
 shutil.copy(mech_yaml, os.path.join(working_dir, 'chem_annotated.yaml'))
 
 
@@ -57,8 +59,10 @@ i_H2OX = get_i_thing({'X': 1.0, 'H': 2.0, 'O': 1.0}, surf)
 i_H2X = get_i_thing({'X': 1.0, 'H': 2.0}, surf)
 
 # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-my_species_indices = [i_OX, i_COX, i_HX, i_CH3X, i_CX]
-my_reaction_indices = [0, 1, 3]
+my_species_indices = []
+my_reaction_indices = [0, 1, 2, 3, 4, 5, 13, 14]
+for i in my_species_indices:
+    print(f'Variable species {i}:', surf.species_names[i])
 for i in my_reaction_indices:
     print(f'Variable reaction {i}:', surf.reactions()[i].equation)
 
@@ -75,7 +79,7 @@ dist_array = np.linspace(DIST_START, DIST_END, N_dist_pts)
 
 # -------------------------------- Experimental Info --------------------------------
 # Load the experimental data and save relevant info in experiment.yaml
-pt_data_file = '../../cpox_pt/horn_data/pt_profiles_smooth.csv'
+pt_data_file = '../cpox_pt/horn_data/pt_profiles_smooth.csv'
 df = pd.read_csv(pt_data_file)
 distances = (df['Distance (mm)'] - 10.0) / 1000.0  # ignore the 10mm of no/catalyst space
 
@@ -122,16 +126,13 @@ with open(experimental_yaml_file, 'w') as outfile:
 # -------------------------------- Prior Info --------------------------------
 prior_data = {}
 
-my_species_indices = [i_OX, i_COX, i_HX, i_CH3X, i_CX]
-my_reaction_indices = [0, 1, 3]
-
 n_sp = len(my_species_indices)
 n_rxn = len(my_reaction_indices)
 
 eV_to_j_mol = 96485
 
 std_dev_thermo = 0.3 * eV_to_j_mol
-std_dev_log10k = 1.0  # factor of 10, should translate into multiplier of 0.1 - 10
+std_dev_log10k = 3.0  # factor of 10, should translate into multiplier of 0.1 - 10
 
 
 prior_cov_J_mol = np.identity(n_sp + n_rxn) * np.float_power(std_dev_thermo, 2.0)  # but this should be squared

@@ -22,8 +22,7 @@ def simulation_wrapper(params):
     # params are a list of perturbations to thermo (in units of J/mol) and kinetics (multiplier)
     # see prior.yaml for more info on priors
 
-    mech_yaml = '/home/moon/uncertainty_estimator/cpox_pt/cpox_pt_20251229/cantera/chem_annotated.yaml'
-    mech_yaml = '/home/moon/uncertainty_estimator/cpox_pt/cpox_pt_20251229/cantera/chem_annotated_noCH4X.yaml'
+    mech_yaml = 'chem_annotated.yaml'
 
     thermo_perturb = {}
     for i, param in enumerate(params[:len(my_prior_species_indices)]):

@@ -1,6 +1,8 @@
 import PEUQSE
 import PEUQSE.UserInput
 import numpy as np
+import sys
+sys.path.append('/projects/westgroup/harris.se/uncertainty_estimator/bpe/simulation/')
 import sim_wrapper
 import yaml
 import os

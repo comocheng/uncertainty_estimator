@@ -27,7 +27,7 @@ dist_array = np.linspace(MIN_SIM_DIST, MAX_SIM_DIST, N_REACTORS)
 TIMEOUT_SECONDS = 30  # seconds to wait before timing out a simulation
 
 # set up the temperature profile as a function of distance along the reactor
-pt_data = '../../cpox_pt/horn_data/pt_profiles_smooth.csv'
+pt_data = os.path.join(os.path.dirname(__file__), '../../cpox_pt/horn_data/pt_profiles_smooth.csv')
 df = pd.read_csv(pt_data)
 distances = (df['Distance (mm)'] - 10.0) / 1000.0  # ignore the 10mm of no/catalyst space
 exp_Ts = df['Temperature (K)']
