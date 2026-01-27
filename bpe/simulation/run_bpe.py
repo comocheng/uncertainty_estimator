@@ -5,8 +5,7 @@ import numpy as np
 import pandas as pd
 import ess
 import sys
-# sys.path.append('/projects/westgroup/harris.se/uncertainty_estimator/bpe/simulation/')
-sys.path.append('/home/moon/uncertainty_estimator/bpe/simulation/')  # Cantera simulation
+sys.path.append(os.path.join(os.environ['UNCERTAINTY_REPO'], 'bpe', 'simulation'))  # Cantera simulation
 import sim_wrapper
 import yaml
 
