@@ -48,34 +48,33 @@ optimizer = ess.BPEstimator(
     load_save_point=False
 )
 
-print('y shape', optimizer.observed_data_y.shape)
-print('prior shape', optimizer.priors.shape)
-print('y uncertainties shape', optimizer.observed_data_y_uncertainties.shape)
-print('prior uncertainties shape', optimizer.prior_uncertainties.shape)
+# print('y shape', optimizer.observed_data_y.shape)
+# print('prior shape', optimizer.priors.shape)
+# print('y uncertainties shape', optimizer.observed_data_y_uncertainties.shape)
+# print('prior uncertainties shape', optimizer.prior_uncertainties.shape)
 
 
 # print('y uncertainties', optimizer.observed_data_y_uncertainties)
 # print('prior uncertainties', optimizer.prior_uncertainties)
 
-# try a walker initialization
-walker_start_points = np.random.multivariate_normal(
-    optimizer.priors,
-    optimizer.prior_uncertainties,
-    size=1,
-    check_valid='warn',
-    tol=1e-8
-)
+# # try a walker initialization
+# walker_start_points = np.random.multivariate_normal(
+#     optimizer.priors,
+#     optimizer.prior_uncertainties,
+#     size=1,
+#     check_valid='warn',
+#     tol=1e-8
+# )
 
 
-print('walker start points', walker_start_points)
-logP = optimizer.get_log_posterior(walker_start_points[0])
-print('log P=' )
+# print('walker start points', walker_start_points)
+# logP = optimizer.get_log_posterior(walker_start_points[0])
+# print('log P=' )
 
 
+N_samples = 10
+optimizer.collect_samples(N_samples)
 
-# N_samples = 10
-# optimizer.collect_samples(N_samples)
-
-# # # only execute this at the end (don't do these two if you're going to continue and run more)
-# optimizer.compile_and_flatten_chains()
-# optimizer.make_all_plots()
+# # only execute this at the end (don't do these two if you're going to continue and run more)
+optimizer.compile_and_flatten_chains()
+optimizer.make_all_plots()
