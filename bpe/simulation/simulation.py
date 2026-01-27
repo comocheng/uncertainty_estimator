@@ -229,14 +229,9 @@ def run_simulation(
             sim.initial_time = 0.0
             sim.advance(sim.time + 1e4 * residence_time)
             # add timeout handling here if the simulation takes too long
-        except (ct.CanteraError, TimeoutException) as e:
-            if isinstance(e, TimeoutException):
-                logging.error(f"Simulation timed out at reactor {n}")
-                # return the results up to this point
-                return gas_out, surf_out, gas_rates, surf_rates
-            else:
-                logging.error(f"Cantera error at reactor {n}: {e}")
-            raise e
+        except (ct.CanteraError, ct._utils.CanteraError, TimeoutException) as e:
+            logging.error(f"Cantera error at reactor {n}: {e}")
+            return gas_out, surf_out, gas_rates, surf_rates
 
         
         kmole_flow_rate = mass_flow_rate / gas.mean_molecular_weight  # kmol/s

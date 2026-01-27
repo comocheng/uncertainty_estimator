@@ -41,6 +41,10 @@ def simulation_wrapper(params):
         surf_thermo_perturb=thermo_perturb,
         surf_kinetics_perturb=kinetics_perturb,
     )
+    if gas_out.shape[0] <= np.max(interpolation_indices):
+        # return nans because simulation didn't complete
+        results = np.zeros((len(interpolation_indices), len(output_gas_species_indices))).ravel() + np.nan
+        return results
 
     # extract the results for the species of interest and the distances
     results = []
@@ -62,6 +66,6 @@ def simulation_wrapper(params):
     results = np.vstack(results)
     results = results.ravel()
 
-    print(results.shape, results)
+    # print(results.shape, results)
 
     return results
