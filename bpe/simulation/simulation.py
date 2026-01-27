@@ -26,8 +26,11 @@ dist_array = np.linspace(MIN_SIM_DIST, MAX_SIM_DIST, N_REACTORS)
 
 TIMEOUT_SECONDS = 30  # seconds to wait before timing out a simulation
 
+UNCERTAINTY_REPO = os.environ['UNCERTAINTY_REPO']
 # set up the temperature profile as a function of distance along the reactor
-pt_data = os.path.join(os.path.dirname(__file__), '../../cpox_pt/horn_data/pt_profiles_smooth.csv')
+# pt_data = os.path.join(os.path.dirname(__file__), '../../cpox_pt/horn_data/pt_profiles_smooth.csv')
+pt_data = os.path.join(UNCERTAINTY_REPO, './cpox_pt/horn_data/pt_profiles_smooth.csv')
+print(pt_data)
 df = pd.read_csv(pt_data)
 distances = (df['Distance (mm)'] - 10.0) / 1000.0  # ignore the 10mm of no/catalyst space
 exp_Ts = df['Temperature (K)']
@@ -166,7 +169,10 @@ def run_simulation(
     downstream = ct.Reservoir(gas, name='downstream')
     rsurf = ct.ReactorSurface(surf, r, A=individual_cstr_cat_area)
     m = ct.MassFlowController(upstream, r, mdot=mass_flow_rate)
-    v = ct.PressureController(r, downstream, master=m, K=1e-5)
+    if ct.__version__ in ['2.6.0']:
+        v = ct.PressureController(r, downstream, master=m, K=1e-5)
+    else:
+        v = ct.PressureController(r, downstream, primary=m, K=1e-5)
 
     if wall_on and not use_temperature_profile:
         air = ct.Solution("air.yaml")
@@ -197,7 +203,7 @@ def run_simulation(
         # Set the state of the reservoir to match that of the previous reactor
         if use_temperature_profile:
             gas.TDY = temperature_profile[n], r.thermo.DP[0], r.thermo.Y
-            surf.TD = temperature_profile[n], surf.TD[1]
+            # surf.TD = temperature_profile[n], surf.TD[1]
             r.syncState()
             upstream.syncState()
         else:
@@ -220,6 +226,7 @@ def run_simulation(
             surf.set_multiplier(0.0)
 
         try:
+            sim.initial_time = 0.0
             sim.advance(sim.time + 1e4 * residence_time)
             # add timeout handling here if the simulation takes too long
         except (ct.CanteraError, TimeoutException) as e:

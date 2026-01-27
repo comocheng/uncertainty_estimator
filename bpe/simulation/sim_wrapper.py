@@ -1,21 +1,25 @@
 import yaml
+import pandas as pd
 import simulation
 import numpy as np
 
 
-with open('experiment.yaml') as f:
-    experimental_data = yaml.safe_load(f)
-with open('prior.yaml') as f:
-    prior_data = yaml.safe_load(f)
+observed_data_y = pd.read_csv('experiment.csv').values
+prior_data = pd.read_csv('priors.csv').values
 
-my_prior_species_indices = prior_data['species_indices']
-my_prior_reaction_indices = prior_data['reaction_indices']
-output_gas_species_indices = experimental_data['out_gas_indices']
+with open('sim_info.yaml') as f:
+    sim_info = yaml.safe_load(f)
 
-# Make hardcoded list of distance indices to copy into your simulation_wrapper (maybe this can be a global later...)
+my_prior_species_indices = sim_info['prior_species_indices']
+my_prior_reaction_indices = sim_info['prior_reaction_indices']
+output_gas_species_indices = sim_info['out_gas_indices']
+sample_distances = sim_info['sample_distances']
+
+# map the sample distances to indices in the reactor
 interpolation_indices = []
-for i in range(len(experimental_data['Distance (m)'])):
-    interpolation_indices.append(int(np.argmin(np.abs(simulation.dist_array - experimental_data['Distance (m)'][i]))))
+for i in range(len(sample_distances)):
+    interpolation_indices.append(int(np.argmin(np.abs(simulation.dist_array - sample_distances[i]))))
+
 
 # wrapper for PEUQSE to call monolith simulation and return results in the format expected by PEUQSE
 def simulation_wrapper(params):
@@ -40,12 +44,24 @@ def simulation_wrapper(params):
 
     # extract the results for the species of interest and the distances
     results = []
-    for i in output_gas_species_indices:
-        species_results = []
-        for j in interpolation_indices:
-            species_results.append(gas_out[j, i])
-        results.append(species_results)
-        
+    for i in interpolation_indices:
+        distance_results = []  # results at a given distance in the reactor
+        for j in output_gas_species_indices:
+            distance_results.append(gas_out[i, j])
+        results.append(distance_results)
+    
+    # how do I make sure this is handled in the same order as observed_data_y?
+    # start by making a picture of what it's supposed to be:
+    # O2, CH4 H2, CO, CO2, H2O
+    # y1, y1, y1, y1, y1, y1
+    # y2, y2, y2, y2, y2, y2
+    # ...
+
+    # This really needs a good test
+
     results = np.vstack(results)
+    results = results.ravel()
+
+    print(results.shape, results)
 
     return results
