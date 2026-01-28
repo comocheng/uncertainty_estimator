@@ -229,6 +229,8 @@ def run_simulation(
             sim.advance(sim.time + 1e4 * residence_time)
             # add timeout handling here if the simulation takes too long
         except (ct.CanteraError, ct._utils.CanteraError, TimeoutException) as e:
+            signal.alarm(0)
+        #except (ct.CanteraError, ct._utils.CanteraError) as e:
             logging.error(f"Cantera error at reactor {n}: {e}")
             return gas_out, surf_out, gas_rates, surf_rates
 
