@@ -30,7 +30,6 @@ UNCERTAINTY_REPO = os.environ['UNCERTAINTY_REPO']
 # set up the temperature profile as a function of distance along the reactor
 # pt_data = os.path.join(os.path.dirname(__file__), '../../cpox_pt/horn_data/pt_profiles_smooth.csv')
 pt_data = os.path.join(UNCERTAINTY_REPO, './cpox_pt/horn_data/pt_profiles_smooth.csv')
-print(pt_data)
 df = pd.read_csv(pt_data)
 distances = (df['Distance (mm)'] - 10.0) / 1000.0  # ignore the 10mm of no/catalyst space
 exp_Ts = df['Temperature (K)']
