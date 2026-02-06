@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 # constants/objects to set up once at the beginning and then reuse for each simulation
 # these are the same for all simulations and do not need to be reloaded each time
-N_REACTORS = 1001
+N_REACTORS = 5001
 MIN_SIM_DIST = -0.004  # in meters
 MAX_SIM_DIST = 0.015  # in meters
 TOTAL_PFR_LEN = MAX_SIM_DIST - MIN_SIM_DIST
@@ -99,6 +99,8 @@ def run_simulation(
     surf=None,
     surf_thermo_perturb=None,
     surf_kinetics_perturb=None,
+    n_iter=100,
+    backmixing=0.2,
 ):
     """Run a simulation of the Horn CPOX experiment
 
@@ -114,6 +116,10 @@ def run_simulation(
         key is index of the species in the surface phase, value is the amount to perturb the enthalpy in J/kmol
     surf_kinetics_perturb : dict
         key is index of the reaction in the surface phase, value is the multiplier to apply to the reaction rate
+    n_iter : int
+        Number of iterations to run the simulation
+    backmixing : float
+        Fraction of the previous reactor's results to mix into the current reactor to simulate backmixing
         
     Returns
     -------
@@ -151,10 +157,8 @@ def run_simulation(
     gas.TPX = 273.15, ct.one_atm, X  # need to initialize mass flow rate at STP
     mass_flow_rate = FLOW_RATE * gas.density_mass
 
-    n_iter = 100
     this_results = []
     prev_results = []
-    backmixing = 0.2  # fraction of the previous reactor's results to mix into the current reactor to simulate backmixing
     for b in range(n_iter):
 
         gas.TPX = T_INLET, P_INLET, X
