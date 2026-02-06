@@ -1,0 +1,3961 @@
+cantera-version: 2.6.0
+date: Fri, 30 Jan 2026 17:31:47 -0500
+elements:
+- atomic-weight: 13.003
+  symbol: Ci
+- atomic-weight: 2.014
+  symbol: D
+- atomic-weight: 17.999
+  symbol: Oi
+- atomic-weight: 3.016
+  symbol: T
+- atomic-weight: 195.083
+  symbol: X
+gas-reactions:
+- efficiencies:
+    Ar: 0.0
+    CO(7): 1.9
+    CO2(4): 3.8
+    H2(6): 2.5
+    H2O(5): 12.0
+  equation: H2(6) + M <=> H(12) + H(12) + M
+  note: 'Reaction index: Chemkin #1; RMG #23
+
+    Library reaction: BurkeH2O2inArHe
+
+    Flux pairs: H2(6), H(12); H2(6), H(12);'
+  rate-constant:
+    A: 4.577e+19
+    Ea: 104.38
+    b: -1.4
+  type: three-body
+- equation: Ar + H2(6) <=> Ar + H(12) + H(12)
+  note: 'Reaction index: Chemkin #2; RMG #24
+
+    Library reaction: BurkeH2O2inArHe
+
+    Flux pairs: H2(6), H(12); Ar, Ar; Ar, H(12);'
+  rate-constant:
+    A: 5.84e+18
+    Ea: 104.38
+    b: -1.1
+- equation: OH(17) + H2(6) <=> H(12) + H2O(5)
+  note: 'Reaction index: Chemkin #3; RMG #21
+
+    Library reaction: BurkeH2O2inArHe
+
+    Flux pairs: OH(17), H2O(5); H2(6), H(12);'
+  rate-constant:
+    A: 216000000.0
+    Ea: 3.43
+    b: 1.51
+- efficiencies:
+    CO(7): 1.9
+    CO2(4): 3.8
+    H2(6): 3.0
+    H2O(5): 0.0
+    N2: 2.0
+    O2(3): 1.5
+  equation: H2O(5) + M <=> H(12) + OH(17) + M
+  note: 'Reaction index: Chemkin #4; RMG #30
+
+    Library reaction: BurkeH2O2inArHe
+
+    Flux pairs: H2O(5), H(12); H2O(5), OH(17);'
+  rate-constant:
+    A: 6.064e+27
+    Ea: 120.79
+    b: -3.322
+  type: three-body
+- equation: H2O(5) + H2O(5) <=> H(12) + OH(17) + H2O(5)
+  note: 'Reaction index: Chemkin #5; RMG #31
+
+    Library reaction: BurkeH2O2inArHe
+
+    Flux pairs: H2O(5), H2O(5); H2O(5), H(12); H2O(5), OH(17);'
+  rate-constant:
+    A: 1.006e+26
+    Ea: 120.18
+    b: -2.44
+- equation: OH(17) + OH(17) <=> O2(3) + H2(6)
+  note: 'Reaction index: Chemkin #6; RMG #45
+
+    Library reaction: BurkeH2O2inArHe
+
+    Flux pairs: OH(17), O2(3); OH(17), H2(6);'
+  rate-constant:
+    A: 200000000000.0
+    Ea: 50.5
+    b: 0.51
+- equation: H(12) + CH3(10) <=> CH4(2)
+  note: 'Reaction index: Chemkin #7; RMG #50
+
+    Template reaction: R_Recombination
+
+    Flux pairs: CH3(10), CH4(2); H(12), CH4(2);
+
+    Matched reaction 57 H + CH3 <=> CH4 in R_Recombination/training
+
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_N-2CNO->O]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 193000000000000.0
+    Ea: 0.27
+    b: 0.0
+- equation: CH3(10) + CH3(10) <=> C2H6(8)
+  note: 'Reaction index: Chemkin #8; RMG #52
+
+    Template reaction: R_Recombination
+
+    Flux pairs: CH3(10), C2H6(8); CH3(10), C2H6(8);
+
+    Matched reaction 9 CH3 + CH3 <=> C2H6 in R_Recombination/training
+
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 945000000000000.0
+    Ea: 0.135
+    b: -0.538
+- equation: H(12) + C2H5(13) <=> C2H6(8)
+  note: 'Reaction index: Chemkin #9; RMG #53
+
+    Template reaction: R_Recombination
+
+    Flux pairs: C2H5(13), C2H6(8); H(12), C2H6(8);
+
+    Matched reaction 58 H + C2H5 <=> C2H6-2 in R_Recombination/training
+
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_N-Sp-3R!H=2CCNNOO_N-2CNO->O_3R!H->C_Sp-3C-2CN]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 100000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H2(6) + CO(7) <=> CH2O(9)
+  note: 'Reaction index: Chemkin #10; RMG #54
+
+    Template reaction: 1,2_Insertion_CO
+
+    Flux pairs: CO(7), CH2O(9); H2(6), CH2O(9);
+
+    Matched reaction 2 H2 + CO <=> CH2O in 1,2_Insertion_CO/training
+
+    This reaction matched rate rule [CO;H2]
+
+    family: 1,2_Insertion_CO'
+  rate-constant:
+    A: 2890000000.0
+    Ea: 82.1
+    b: 1.16
+- equation: H(12) + HCO(15) <=> CH2O(9)
+  note: 'Reaction index: Chemkin #11; RMG #55
+
+    Template reaction: R_Recombination
+
+    Flux pairs: HCO(15), CH2O(9); H(12), CH2O(9);
+
+    Matched reaction 63 H + CHO <=> CH2O in R_Recombination/training
+
+    This reaction matched rate rule [Root_1R->H_N-2R->S_N-2CHNO->H_N-2CNO-inRing_Ext-2CNO-R_Sp-3R!H=2CCNNOO_3R!H->O]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 46800000000.0
+    Ea: -4.53
+    b: 0.0
+- equation: CH3(10) + C2H5(13) <=> C3H8(11)
+  note: 'Reaction index: Chemkin #12; RMG #59
+
+    Template reaction: R_Recombination
+
+    Flux pairs: C2H5(13), C3H8(11); CH3(10), C3H8(11);
+
+    Matched reaction 10 CH3 + C2H5 <=> C3H8 in R_Recombination/training
+
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing_Ext-2R-R_Sp-3R!H-2R_3R!H->C_2R->C]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 1230000000000000.0
+    Ea: 0.021
+    b: -0.562
+- equation: H(12) + CH3CH(19) <=> C2H5(13)
+  note: 'Reaction index: Chemkin #13; RMG #61
+
+    Template reaction: Birad_R_Recombination
+
+    Flux pairs: H(12), C2H5(13); CH3CH(19), C2H5(13);
+
+    Estimated using an average for rate rule [H_rad;Birad]
+
+    Euclidian distance = 0
+
+    family: Birad_R_Recombination'
+  rate-constant:
+    A: 10000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + C2H4(18) <=> C2H5(13)
+  note: 'Reaction index: Chemkin #14; RMG #62
+
+    Template reaction: R_Addition_MultipleBond
+
+    Flux pairs: C2H4(18), C2H5(13); H(12), C2H5(13);
+
+    Matched reaction 2541 H + C2H4 <=> C2H5-2 in R_Addition_MultipleBond/training
+
+    This reaction matched rate rule [Cds-HH_Cds-HH;HJ]
+
+    family: R_Addition_MultipleBond'
+  rate-constant:
+    A: 462000000.0
+    Ea: 1.01
+    b: 1.64
+- equation: OH(17) + CH3(10) <=> CH3OH(14)
+  note: 'Reaction index: Chemkin #15; RMG #65
+
+    Template reaction: R_Recombination
+
+    Flux pairs: OH(17), CH3OH(14); CH3(10), CH3OH(14);
+
+    Matched reaction 73 CH3 + OH <=> CH4O in R_Recombination/training
+
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_1COS->O_2R->C]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 60300000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + CO(7) <=> HCO(15)
+  note: 'Reaction index: Chemkin #16; RMG #69
+
+    Template reaction: R_Addition_COm
+
+    Flux pairs: CO(7), HCO(15); H(12), HCO(15);
+
+    Matched reaction 4 H + CO <=> CHO in R_Addition_COm/training
+
+    This reaction matched rate rule [COm;H_rad]
+
+    family: R_Addition_COm'
+  rate-constant:
+    A: 118000000000.0
+    Ea: 2.72
+    b: 0.0
+- equation: CO(7) + CH4(2) <=> CH3CHO(16)
+  note: 'Reaction index: Chemkin #17; RMG #70
+
+    Template reaction: 1,2_Insertion_CO
+
+    Flux pairs: CO(7), CH3CHO(16); CH4(2), CH3CHO(16);
+
+    Matched reaction 3 CH4 + CO <=> C2H4O in 1,2_Insertion_CO/training
+
+    This reaction matched rate rule [CO;C_methane]
+
+    family: 1,2_Insertion_CO'
+  rate-constant:
+    A: 65600.0
+    Ea: 86.9
+    b: 2.86
+- equation: HCO(15) + CH3(10) <=> CH3CHO(16)
+  note: 'Reaction index: Chemkin #18; RMG #73
+
+    Template reaction: R_Recombination
+
+    Flux pairs: HCO(15), CH3CHO(16); CH3(10), CH3CHO(16);
+
+    Matched reaction 71 CH3 + CHO <=> C2H4O in R_Recombination/training
+
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_N-1COS->O_1CS->C_N-1C-inRing_Ext-2R-R_N-Sp-3R!H-2R_3R!H->O]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 18100000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: CH3OO(20) <=> O2(3) + CH3(10)
+  note: 'Reaction index: Chemkin #19; RMG #81
+
+    Template reaction: R_Recombination
+
+    Flux pairs: CH3OO(20), CH3(10); CH3OO(20), O2(3);
+
+    Matched reaction 0 CH3O2 <=> O2 + CH3 in R_Recombination/training
+
+    This reaction matched rate rule [Root_N-1R->H_N-1CNOS->N_1COS->O_Ext-1O-R_2R->C_3R!H->O]
+
+    family: R_Recombination'
+  rate-constant:
+    A: 109000000000000.0
+    Ea: 33.3
+    b: 0.25
+- equation: CH3OO(20) <=> OH(17) + CH2O(9)
+  note: 'Reaction index: Chemkin #20; RMG #83
+
+    Template reaction: intra_H_migration
+
+    Flux pairs: CH3OO(20), OH(17); CH3OO(20), CH2O(9);
+
+    From training reaction 240 used for R3H_SS_O;O_rad_out;Cs_H_out_2H
+
+    Exact match found for rate rule [R3H_SS_O;O_rad_out;Cs_H_out_2H]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 3.0
+
+    family: intra_H_migration'
+  rate-constant:
+    A: 471000000.0
+    Ea: 42.27
+    b: 1.45
+- equation: HCO(15) + CH3(10) <=> CO(7) + CH4(2)
+  note: 'Reaction index: Chemkin #21; RMG #157
+
+    Template reaction: CO_Disproportionation
+
+    Flux pairs: CH3(10), CH4(2); HCO(15), CO(7);
+
+    Matched reaction 3 HCO + CH3 <=> CO + CH4 in CO_Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->N_N-4BrCClFHIOPSSi->H_4CO->C]
+
+    family: CO_Disproportionation'
+  rate-constant:
+    A: 40000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: OH(17) + HCO(15) <=> H2O(5) + CO(7)
+  note: 'Reaction index: Chemkin #22; RMG #159
+
+    Template reaction: CO_Disproportionation
+
+    Flux pairs: OH(17), H2O(5); HCO(15), CO(7);
+
+    Estimated from node Root_N-4R->N_N-4BrCClFHIOPSSi->H_N-4CO->C in family CO_Disproportionation.'
+  rate-constant:
+    A: 30100000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + HCO(15) <=> H2(6) + CO(7)
+  note: 'Reaction index: Chemkin #23; RMG #160
+
+    Template reaction: CO_Disproportionation
+
+    Flux pairs: H(12), H2(6); HCO(15), CO(7);
+
+    Matched reaction 0 HCO + H <=> CO + H2 in CO_Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->N_4BrCClFHIOPSSi->H]
+
+    family: CO_Disproportionation'
+  rate-constant:
+    A: 90300000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: HCO(15) + C2H5(13) <=> CO(7) + C2H6(8)
+  note: 'Reaction index: Chemkin #24; RMG #161
+
+    Template reaction: CO_Disproportionation
+
+    Flux pairs: C2H5(13), C2H6(8); HCO(15), CO(7);
+
+    Matched reaction 12 C2H5 + HCO <=> C2H6 + CO in CO_Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->N_N-4BrCClFHIOPSSi->H_Ext-4CO-R_5R!H->C_Sp-5C-4CO_4CO->C]
+
+    family: CO_Disproportionation'
+  rate-constant:
+    A: 43000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: HCO(15) + HCO(15) <=> CO(7) + CH2O(9)
+  note: 'Reaction index: Chemkin #25; RMG #163
+
+    Template reaction: CO_Disproportionation
+
+    Flux pairs: HCO(15), CH2O(9); HCO(15), CO(7);
+
+    Matched reaction 5 HCO + HCO_Y <=> CO + CH2O in CO_Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->N_N-4BrCClFHIOPSSi->H_Ext-4CO-R_N-5R!H->C_5BrClFINOPSSi->O_4CO->C_N-Sp-5O-4C]
+
+    family: CO_Disproportionation'
+  rate-constant:
+    A: 18000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: HCO(15) + CH3CH(19) <=> CO(7) + C2H5(13)
+  note: 'Reaction index: Chemkin #26; RMG #167
+
+    Template reaction: CO_Disproportionation
+
+    Flux pairs: CH3CH(19), C2H5(13); HCO(15), CO(7);
+
+    Estimated from node Root_N-4R->N_N-4BrCClFHIOPSSi->H_Ext-4CO-R_5R!H->C_Sp-5C-4CO_4CO->C
+    in family CO_Disproportionation.'
+  rate-constant:
+    A: 43091400000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + CH4(2) <=> H2(6) + CH3(10)
+  note: 'Reaction index: Chemkin #27; RMG #214
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: H(12), H2(6); CH4(2), CH3(10);
+
+    Matched reaction 186 CH4b + H <=> CH3_p1 + H2_p in H_Abstraction/training
+
+    This reaction matched rate rule [C_methane;H_rad]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 4100.0
+    Ea: 8.755
+    b: 3.156
+- equation: CH3(10) + C2H6(8) <=> CH4(2) + C2H5(13)
+  note: 'Reaction index: Chemkin #28; RMG #215
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: C2H6(8), C2H5(13); CH3(10), CH4(2);
+
+    Matched reaction 215 C2H6 + CH3_r3 <=> C2H5b + CH4 in H_Abstraction/training
+
+    This reaction matched rate rule [C_methane;C_rad/H2/Cs\H3]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 35.0
+    Ea: 10.384
+    b: 3.44
+- equation: HCO(15) + CH4(2) <=> CH2O(9) + CH3(10)
+  note: 'Reaction index: Chemkin #29; RMG #217
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: HCO(15), CH2O(9); CH4(2), CH3(10);
+
+    Matched reaction 318 HCO_r3 + CH4b <=> CH2O + CH3_p1 in H_Abstraction/training
+
+    This reaction matched rate rule [C_methane;CO_pri_rad]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 7280.0
+    Ea: 34.25
+    b: 2.85
+- equation: OH(17) + CH4(2) <=> H2O(5) + CH3(10)
+  note: 'Reaction index: Chemkin #30; RMG #220
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: OH(17), H2O(5); CH4(2), CH3(10);
+
+    Matched reaction 188 CH4b + OH <=> CH3_p1 + H2O_p in H_Abstraction/training
+
+    This reaction matched rate rule [C_methane;O_pri_rad]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 1000000.0
+    Ea: 2.506
+    b: 2.182
+- equation: CH3(10) + C2H5(13) <=> CH4(2) + C2H4(18)
+  note: 'Reaction index: Chemkin #31; RMG #221
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CH3(10), CH4(2); C2H5(13), C2H4(18);
+
+    Matched reaction 5 CH3_r1 + C2H5 <=> CH4 + C2H4 in Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->H_4CNOS-u1_N-1R!H->O_N-4CNOS->O_4CNS->C_1CNS->C_Sp-2R!H-1C_2R!H->C]
+
+    family: Disproportionation'
+  rate-constant:
+    A: 657000000000000.0
+    Ea: 0.0
+    b: -0.68
+- equation: CH4(2) + CH3CH(19) <=> CH3(10) + C2H5(13)
+  note: 'Reaction index: Chemkin #32; RMG #222
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: CH3CH(19), C2H5(13); CH4(2), CH3(10);
+
+    Estimated using an average for rate rule [C_methane;Y_1centerbirad]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 4.0
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 200651200000.0
+    Ea: 15.521
+    b: 0.833
+- equation: OH(17) + C2H6(8) <=> H2O(5) + C2H5(13)
+  note: 'Reaction index: Chemkin #33; RMG #265
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: C2H6(8), C2H5(13); OH(17), H2O(5);
+
+    Matched reaction 212 C2H6 + OH <=> C2H5b + H2O_p in H_Abstraction/training
+
+    This reaction matched rate rule [O_pri;C_rad/H2/Cs\H3]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 1610000.0
+    Ea: 0.741
+    b: 2.224
+- equation: OH(17) + CH2O(9) <=> H2O(5) + HCO(15)
+  note: 'Reaction index: Chemkin #34; RMG #267
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: CH2O(9), HCO(15); OH(17), H2O(5);
+
+    Matched reaction 367 OH_p23 + CH2O <=> H2O + HCO_r3 in H_Abstraction/training
+
+    This reaction matched rate rule [O_pri;CO_pri_rad]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 3440000000.0
+    Ea: -0.45
+    b: 1.18
+- equation: OH(17) + C2H5(13) <=> H2O(5) + C2H4(18)
+  note: 'Reaction index: Chemkin #35; RMG #271
+
+    Template reaction: Disproportionation
+
+    Flux pairs: OH(17), H2O(5); C2H5(13), C2H4(18);
+
+    Matched reaction 13 HO + C2H5 <=> H2O + C2H4 in Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->H_4CNOS-u1_N-1R!H->O_4CNOS->O_Sp-2R!H-1CNS_1CNS->C_2R!H->C]
+
+    family: Disproportionation'
+  rate-constant:
+    A: 72300000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: OH(17) + C2H5(13) <=> H2O(5) + CH3CH(19)
+  note: 'Reaction index: Chemkin #36; RMG #272
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: C2H5(13), CH3CH(19); OH(17), H2O(5);
+
+    Estimated using template [Xrad_H;O_pri_rad] for rate rule [C_rad_H;O_pri_rad]
+
+    Euclidian distance = 1.0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 60000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + C2H6(8) <=> H2(6) + C2H5(13)
+  note: 'Reaction index: Chemkin #37; RMG #276
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: C2H6(8), C2H5(13); H(12), H2(6);
+
+    Matched reaction 210 C2H6 + H <=> C2H5b + H2_p in H_Abstraction/training
+
+    This reaction matched rate rule [H2;C_rad/H2/Cs\H3]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 115000000.0
+    Ea: 7.53
+    b: 1.9
+- equation: H2(6) + HCO(15) <=> H(12) + CH2O(9)
+  note: 'Reaction index: Chemkin #38; RMG #278
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: HCO(15), CH2O(9); H2(6), H(12);
+
+    Matched reaction 309 H2 + HCO_r3 <=> CH2O + H in H_Abstraction/training
+
+    This reaction matched rate rule [H2;CO_pri_rad]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 1800000.0
+    Ea: 48.94
+    b: 2.0
+- equation: H(12) + C2H5(13) <=> H2(6) + C2H4(18)
+  note: 'Reaction index: Chemkin #39; RMG #281
+
+    Template reaction: Disproportionation
+
+    Flux pairs: H(12), H2(6); C2H5(13), C2H4(18);
+
+    Matched reaction 4 H + C2H5 <=> H2 + C2H4 in Disproportionation/training
+
+    This reaction matched rate rule [Root_4R->H_Sp-2R!H-1R!H_2R!H-u1_N-1R!H->O_1CN->C_2R!H->C]
+
+    family: Disproportionation'
+  rate-constant:
+    A: 10830000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H2(6) + CH3CH(19) <=> H(12) + C2H5(13)
+  note: 'Reaction index: Chemkin #40; RMG #282
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: CH3CH(19), C2H5(13); H2(6), H(12);
+
+    Estimated using an average for rate rule [H2;Y_1centerbirad]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 231775800000.0
+    Ea: 21.325
+    b: 0.75
+- equation: HCO(15) + C2H6(8) <=> CH2O(9) + C2H5(13)
+  note: 'Reaction index: Chemkin #41; RMG #287
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: HCO(15), CH2O(9); C2H6(8), C2H5(13);
+
+    Matched reaction 325 HCO_r3 + C2H6 <=> CH2O + C2H5 in H_Abstraction/training
+
+    This reaction matched rate rule [C/H3/Cs\H3;CO_pri_rad]
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 46920.0
+    Ea: 38.24
+    b: 2.72
+- equation: C2H5(13) + C2H5(13) <=> C2H4(18) + C2H6(8)
+  note: 'Reaction index: Chemkin #42; RMG #290
+
+    Template reaction: Disproportionation
+
+    Flux pairs: C2H5(13), C2H6(8); C2H5(13), C2H4(18);
+
+    Matched reaction 6 C2H5 + C2H5-2 <=> C2H6 + C2H4 in Disproportionation/training
+
+    This reaction matched rate rule [Root_N-4R->H_4CNOS-u1_N-1R!H->O_N-4CNOS->O_Ext-4CNS-R_N-Sp-5R!H#4CCCNNNSSS_N-2R!H->S_N-5R!H->O_Sp-5CS-4CCNSS_1CNS->C]
+
+    family: Disproportionation'
+  rate-constant:
+    A: 69000000000000.0
+    Ea: 0.0
+    b: -0.35
+- equation: CH3CH(19) + C2H6(8) <=> C2H5(13) + C2H5(13)
+  note: 'Reaction index: Chemkin #43; RMG #291
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: CH3CH(19), C2H5(13); C2H6(8), C2H5(13);
+
+    Estimated using an average for rate rule [C/H3/Cs\H3;Y_1centerbirad]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 6.0
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 115724500000.0
+    Ea: 12.427
+    b: 0.933
+- equation: HCO(15) + C2H5(13) <=> CH2O(9) + C2H4(18)
+  note: 'Reaction index: Chemkin #44; RMG #327
+
+    Template reaction: Disproportionation
+
+    Flux pairs: HCO(15), C2H4(18); C2H5(13), CH2O(9);
+
+    Estimated from node Root_N-4R->H_4CNOS-u1_N-1R!H->O_N-4CNOS->O_Ext-4CNS-R_N-Sp-5R!H#4CCCNNNSSS_N-2R!H->S_5R!H->O_1CNS->C
+    in family Disproportionation.
+
+    Multiplied by reaction path degeneracy 3.0'
+  rate-constant:
+    A: 8670000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: CH2O(9) + CH3CH(19) <=> HCO(15) + C2H5(13)
+  note: 'Reaction index: Chemkin #45; RMG #334
+
+    Template reaction: H_Abstraction
+
+    Flux pairs: CH3CH(19), C2H5(13); CH2O(9), HCO(15);
+
+    Estimated using an average for rate rule [CO_pri;Y_1centerbirad]
+
+    Euclidian distance = 0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: H_Abstraction'
+  rate-constant:
+    A: 50126240000.0
+    Ea: 1.38
+    b: 0.285
+- equation: CH3CH(19) + C2H5(13) <=> C2H4(18) + C2H5(13)
+  note: 'Reaction index: Chemkin #46; RMG #386
+
+    Template reaction: Disproportionation
+
+    Flux pairs: C2H5(13), C2H5(13); CH3CH(19), C2H4(18);
+
+    Estimated from node Root_N-4R->H_N-4CNOS-u1_N-1R!H->O_Sp-2R!H-1CNS_1CNS->C_2R!H->C
+    in family Disproportionation.
+
+    Multiplied by reaction path degeneracy 3.0'
+  rate-constant:
+    A: 90300000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: '[CH]C(48) <=> C2H4(18)'
+  note: 'Reaction index: Chemkin #47; RMG #77
+
+    Template reaction: Singlet_Carbene_Intra_Disproportionation
+
+    Flux pairs: [CH]C(48), C2H4(18);
+
+    Estimated from node Root in family Singlet_Carbene_Intra_Disproportionation.
+
+    Multiplied by reaction path degeneracy 3.0'
+  rate-constant:
+    A: 1.185477e+19
+    Ea: 3.422
+    b: -1.971
+- equation: OH(17) + CO(7) <=> CHO2(83)
+  note: 'Reaction index: Chemkin #48; RMG #177
+
+    Template reaction: R_Addition_COm
+
+    Flux pairs: OH(17), CHO2(83); CO(7), CHO2(83);
+
+    Estimated using template [COm;O_rad] for rate rule [COm;O_pri_rad]
+
+    Euclidian distance = 1.0
+
+    family: R_Addition_COm'
+  rate-constant:
+    A: 34100000.0
+    Ea: 3.0
+    b: 0.0
+- equation: CHO2(83) + CH3(10) <=> CO2(4) + CH4(2)
+  note: 'Reaction index: Chemkin #49; RMG #210
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CH3(10), CH4(2); CHO2(83), CO2(4);
+
+    Estimated from node Root_N-4R->H_4CNOS-u1_1R!H->O_2R!H->C_4CNOS->C in family Disproportionation.'
+  rate-constant:
+    A: 84900000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: OH(17) + CHO2(83) <=> H2O(5) + CO2(4)
+  note: 'Reaction index: Chemkin #50; RMG #224
+
+    Template reaction: Disproportionation
+
+    Flux pairs: OH(17), H2O(5); CHO2(83), CO2(4);
+
+    Estimated from node Root_N-4R->H_4CNOS-u1_1R!H->O_2R!H->C_N-4CNOS->C in family
+    Disproportionation.'
+  rate-constant:
+    A: 24100000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + CHO2(83) <=> H2(6) + CO2(4)
+  note: 'Reaction index: Chemkin #51; RMG #227
+
+    Template reaction: Disproportionation
+
+    Flux pairs: H(12), H2(6); CHO2(83), CO2(4);
+
+    Estimated from node Root_4R->H_Sp-2R!H-1R!H_2R!H-u1_1R!H->O_2R!H->C in family
+    Disproportionation.'
+  rate-constant:
+    A: 20000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: CHO2(83) + C2H5(13) <=> CO2(4) + C2H6(8)
+  note: 'Reaction index: Chemkin #52; RMG #229
+
+    Template reaction: Disproportionation
+
+    Flux pairs: C2H5(13), C2H6(8); CHO2(83), CO2(4);
+
+    Estimated from node Root_N-4R->H_4CNOS-u1_1R!H->O_2R!H->C_Ext-4CNOS-R_N-Sp-5R!H=4CCNNOOSS_4CNOS->C_Sp-5R!H-4C_5R!H->C
+    in family Disproportionation.'
+  rate-constant:
+    A: 2410000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: HCO(15) + CHO2(83) <=> CO2(4) + CH2O(9)
+  note: 'Reaction index: Chemkin #53; RMG #231
+
+    Template reaction: Disproportionation
+
+    Flux pairs: HCO(15), CH2O(9); CHO2(83), CO2(4);
+
+    Estimated from node Root_N-4R->H_4CNOS-u1_1R!H->O_2R!H->C_Ext-4CNOS-R_Sp-5R!H=4CCNNOOSS_N-5R!H->C
+    in family Disproportionation.'
+  rate-constant:
+    A: 181000000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: H(12) + CO2(4) <=> CHO2(83)
+  note: 'Reaction index: Chemkin #54; RMG #237
+
+    Template reaction: R_Addition_MultipleBond
+
+    Flux pairs: H(12), CHO2(83); CO2(4), CHO2(83);
+
+    Estimated using template [Od_R;HJ] for rate rule [Od_Cdd-O2d;HJ]
+
+    Euclidian distance = 2.0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: R_Addition_MultipleBond'
+  rate-constant:
+    A: 237000000.0
+    Ea: 7.339
+    b: 1.63
+- equation: CHO2(83) + CH3CH(19) <=> CO2(4) + C2H5(13)
+  note: 'Reaction index: Chemkin #55; RMG #240
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CH3CH(19), C2H5(13); CHO2(83), CO2(4);
+
+    Estimated from node Root_N-4R->H_N-4CNOS-u1_1R!H->O_4CNOS->C in family Disproportionation.'
+  rate-constant:
+    A: 1210000000000.0
+    Ea: 0.0
+    b: 0.0
+- equation: CHO2(100) + CH3(10) <=> CO2(4) + CH4(2)
+  note: 'Reaction index: Chemkin #56; RMG #211
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CHO2(100), CO2(4); CH3(10), CH4(2);
+
+    Estimated from node Root_Ext-1R!H-R_N-4R->O in family Disproportionation.'
+  rate-constant:
+    A: 13564200000.0
+    Ea: 0.0
+    b: 0.47
+- equation: OH(17) + CHO2(100) <=> H2O(5) + CO2(4)
+  note: 'Reaction index: Chemkin #57; RMG #225
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CHO2(100), CO2(4); OH(17), H2O(5);
+
+    Estimated from node Root_Ext-1R!H-R in family Disproportionation.'
+  rate-constant:
+    A: 9445080000.0
+    Ea: 0.0
+    b: 0.509
+- equation: H(12) + CHO2(100) <=> H2(6) + CO2(4)
+  note: 'Reaction index: Chemkin #58; RMG #228
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CHO2(100), CO2(4); H(12), H2(6);
+
+    Estimated from node Root_Ext-1R!H-R_N-4R->O in family Disproportionation.'
+  rate-constant:
+    A: 13564200000.0
+    Ea: 0.0
+    b: 0.47
+- equation: CHO2(100) + C2H5(13) <=> CO2(4) + C2H6(8)
+  note: 'Reaction index: Chemkin #59; RMG #230
+
+    Template reaction: Disproportionation
+
+    Flux pairs: C2H5(13), C2H6(8); CHO2(100), CO2(4);
+
+    Estimated from node Root_Ext-1R!H-R_N-4R->O in family Disproportionation.'
+  rate-constant:
+    A: 13564200000.0
+    Ea: 0.0
+    b: 0.47
+- equation: HCO(15) + CHO2(100) <=> CO2(4) + CH2O(9)
+  note: 'Reaction index: Chemkin #60; RMG #232
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CHO2(100), CO2(4); HCO(15), CH2O(9);
+
+    Estimated from node Root_Ext-1R!H-R_N-4R->O in family Disproportionation.'
+  rate-constant:
+    A: 13564200000.0
+    Ea: 0.0
+    b: 0.47
+- equation: H(12) + CO2(4) <=> CHO2(100)
+  note: 'Reaction index: Chemkin #61; RMG #238
+
+    Template reaction: R_Addition_MultipleBond
+
+    Flux pairs: H(12), CHO2(100); CO2(4), CHO2(100);
+
+    Estimated using template [Cdd_Od;HJ] for rate rule [CO2;HJ]
+
+    Euclidian distance = 1.0
+
+    family: R_Addition_MultipleBond
+
+    Ea raised from 47.9 to 52.0 kJ/mol to match endothermicity of reaction.'
+  rate-constant:
+    A: 127898000000.0
+    Ea: 12.422
+    b: 0.923
+- equation: CHO2(100) + CH3CH(19) <=> CO2(4) + C2H5(13)
+  note: 'Reaction index: Chemkin #62; RMG #242
+
+    Template reaction: Disproportionation
+
+    Flux pairs: CH3CH(19), C2H5(13); CHO2(100), CO2(4);
+
+    Estimated from node Root_Ext-1R!H-R_N-4R->O in family Disproportionation.'
+  rate-constant:
+    A: 13564200000.0
+    Ea: 0.0
+    b: 0.47
+- equation: CHO2(100) <=> CHO2(83)
+  note: 'Reaction index: Chemkin #63; RMG #734
+
+    Template reaction: intra_H_migration
+
+    Flux pairs: CHO2(100), CHO2(83);
+
+    Estimated using template [R2H_S;O_rad_out;XH_out] for rate rule [R2H_S;O_rad_out;CO_H_out]
+
+    Euclidian distance = 1.0
+
+    Multiplied by reaction path degeneracy 2.0
+
+    family: intra_H_migration'
+  rate-constant:
+    A: 430000000000000.0
+    Ea: 27.24
+    b: -0.27
+- equation: C2H2(183) <=> C#C(176)
+  note: 'Reaction index: Chemkin #64; RMG #831
+
+    Template reaction: Singlet_Carbene_Intra_Disproportionation
+
+    Flux pairs: C2H2(183), C#C(176);
+
+    Estimated from node Root in family Singlet_Carbene_Intra_Disproportionation.
+
+    Multiplied by reaction path degeneracy 2.0'
+  rate-constant:
+    A: 7.90318e+18
+    Ea: 9.962
+    b: -1.971
+generator: ck2yaml
+input-files:
+- chem_annotated-gas.inp
+- tran.dat
+- chem_annotated-surface.inp
+phases:
+- elements:
+  - H
+  - D
+  - T
+  - C
+  - Ci
+  - O
+  - Oi
+  - N
+  - Ne
+  - Ar
+  - He
+  - Si
+  - S
+  - F
+  - Cl
+  - Br
+  - I
+  - X
+  kinetics: gas
+  name: gas
+  reactions:
+  - gas-reactions
+  species:
+  - Ar
+  - Ne
+  - N2
+  - CH4(2)
+  - O2(3)
+  - CO2(4)
+  - H2O(5)
+  - H2(6)
+  - CO(7)
+  - C2H6(8)
+  - CH2O(9)
+  - CH3(10)
+  - C3H8(11)
+  - H(12)
+  - C2H5(13)
+  - CH3OH(14)
+  - HCO(15)
+  - CH3CHO(16)
+  - OH(17)
+  - C2H4(18)
+  - CH3CH(19)
+  - CH3OO(20)
+  - '[CH]C(48)'
+  - CHO2(83)
+  - CHO2(100)
+  - C#C(176)
+  - C2H2(183)
+  state:
+    P: 1 atm
+    T: 300.0
+  thermo: ideal-gas
+  transport: mixture-averaged
+- adjacent-phases:
+  - gas
+  elements:
+  - H
+  - D
+  - T
+  - C
+  - Ci
+  - O
+  - Oi
+  - N
+  - Ne
+  - Ar
+  - He
+  - Si
+  - S
+  - F
+  - Cl
+  - Br
+  - I
+  - X
+  kinetics: surface
+  name: surface1
+  reactions:
+  - surface1-reactions
+  site-density: 2.483e-09
+  species:
+  - X(1)
+  - HX(21)
+  - CO2X(22)
+  - COX(23)
+  - OX(24)
+  - CH2X(25)
+  - CH3X(26)
+  - CHX(27)
+  - CX(28)
+  - H2X(29)
+  - OHX(30)
+  - H2OX(31)
+  - CHOX(32)
+  - O[C]#[Pt](88)
+  - C2OX2(94)
+  - CH2OX(119)
+  - C2H2X2(123)
+  - C2H2X(124)
+  - C2H2X2(126)
+  - C2HX2(127)
+  - C2X2(129)
+  - C#[C][Pt](170)
+  - C#C.[Pt](177)
+  state:
+    P: 1 atm
+    T: 300.0
+  thermo: ideal-surface
+species:
+- composition:
+    Ar: 1
+  name: Ar
+  note: Ar
+  thermo:
+    data:
+    - - 2.5
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - -745.375
+      - 4.37967
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 200.0
+    - 6000.0
+  transport:
+    diameter: 3.33
+    geometry: atom
+    model: gas
+    note: GRI-Mech
+    well-depth: 136.501
+- composition:
+    Ne: 1
+  name: Ne
+  note: Ne
+  thermo:
+    data:
+    - - 2.5
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - -745.375
+      - 3.35532
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 200.0
+    - 6000.0
+  transport:
+    diameter: 3.758
+    geometry: atom
+    model: gas
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the
+      fallback method! Try improving transport databases!
+    well-depth: 148.6
+- composition:
+    N: 2
+  name: N2
+  note: N2
+  thermo:
+    data:
+    - - 3.53101
+      - -0.000123661
+      - -5.02999e-07
+      - 2.43531e-09
+      - -1.40881e-12
+      - -1046.98
+      - 2.96747
+    - - 2.95258
+      - 0.0013969
+      - -4.92632e-07
+      - 7.8601e-11
+      - -4.60755e-15
+      - -923.949
+      - 5.87189
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 200.0
+    - 1000.0
+    - 6000.0
+  transport:
+    diameter: 3.621
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    polarizability: 1.76
+    rotational-relaxation: 4.0
+    well-depth: 97.53
+- composition:
+    C: 1
+    H: 4
+  name: CH4(2)
+  note: CH4(2)
+  thermo:
+    data:
+    - - 4.20541633
+      - -0.0053555862
+      - 2.51123688e-05
+      - -2.13763364e-08
+      - 5.97526027e-12
+      - -10161.9434
+      - -0.921283218
+    - - 0.90825943
+      - 0.0114540962
+      - -4.57174412e-06
+      - 8.29193029e-10
+      - -5.66316007e-14
+      - -9719.97168
+      - 13.9931301
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 1084.12
+    - 5000.0
+  transport:
+    diameter: 3.746
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    polarizability: 2.6
+    rotational-relaxation: 13.0
+    well-depth: 141.4
+- composition:
+    O: 2
+  name: O2(3)
+  note: O2(3)
+  thermo:
+    data:
+    - - 3.53732243
+      - -0.00121571647
+      - 5.31620254e-06
+      - -4.89446434e-09
+      - 1.45846258e-12
+      - -1038.58849
+      - 4.68368183
+    - - 3.15382081
+      - 0.00167804371
+      - -7.69974236e-07
+      - 1.51275462e-10
+      - -1.08782414e-14
+      - -1040.81728
+      - 6.16755832
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 1074.55
+    - 5000.0
+  transport:
+    diameter: 3.458
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    polarizability: 1.6
+    rotational-relaxation: 3.8
+    well-depth: 107.4
+- composition:
+    C: 1
+    O: 2
+  name: CO2(4)
+  note: CO2(4)
+  thermo:
+    data:
+    - - 3.28084453
+      - 0.0025018564
+      - 8.08192142e-06
+      - -1.20510369e-08
+      - 4.66542684e-12
+      - -48400.8303
+      - 6.00081438
+    - - 4.67427416
+      - 0.00260962879
+      - -9.85683184e-07
+      - 1.95712276e-10
+      - -1.49834931e-14
+      - -48951.2168
+      - -2.11077406
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 978.22
+    - 5000.0
+  transport:
+    diameter: 3.763
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    polarizability: 2.65
+    rotational-relaxation: 2.1
+    well-depth: 244.001
+- composition:
+    H: 2
+    O: 1
+  name: H2O(5)
+  note: H2O(5)
+  thermo:
+    data:
+    - - 4.05763524
+      - -0.000787929225
+      - 2.90875322e-06
+      - -1.47516271e-09
+      - 2.12832915e-13
+      - -30281.5866
+      - -0.311361934
+    - - 2.84325454
+      - 0.00275107882
+      - -7.81027793e-07
+      - 1.07242789e-10
+      - -5.79385325e-15
+      - -29958.6146
+      - 5.91039666
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 1130.23
+    - 5000.0
+  transport:
+    diameter: 2.605
+    dipole: 1.844
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 4.0
+    well-depth: 572.402
+- composition:
+    H: 2
+  name: H2(6)
+  note: H2(6)
+  thermo:
+    data:
+    - - 3.43536393
+      - 0.000212711953
+      - -2.78628671e-07
+      - 3.40270013e-10
+      - -7.76039045e-14
+      - -1031.35983
+      - -3.90841661
+    - - 2.78818509
+      - 0.000587615921
+      - 1.5902213e-07
+      - -5.52762536e-11
+      - 4.3432812e-15
+      - -596.155632
+      - 0.112618494
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 1959.07
+    - 5000.0
+  transport:
+    diameter: 2.92
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    polarizability: 0.79
+    rotational-relaxation: 280.0
+    well-depth: 38.0
+- composition:
+    C: 1
+    O: 1
+  name: CO(7)
+  note: CO(7)
+  thermo:
+    data:
+    - - 3.56838006
+      - -0.00085212634
+      - 2.48917989e-06
+      - -1.56331226e-09
+      - 3.13595852e-13
+      - -14284.2549
+      - 3.57912151
+    - - 2.91306239
+      - 0.00164658456
+      - -6.8861821e-07
+      - 1.21038081e-10
+      - -7.84023563e-15
+      - -14180.8823
+      - 6.71048256
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 1571.64
+    - 5000.0
+  transport:
+    diameter: 3.65
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    polarizability: 1.95
+    rotational-relaxation: 1.8
+    well-depth: 98.1
+- composition:
+    C: 2
+    H: 6
+  name: C2H6(8)
+  note: C2H6(8)
+  thermo:
+    data:
+    - - 3.72239865
+      - 0.0016507701
+      - 3.44177937e-05
+      - -3.76861352e-08
+      - 1.24451983e-11
+      - -11557.5904
+      - 4.68245945
+    - - 2.8284578
+      - 0.0173040987
+      - -6.73336647e-06
+      - 1.2374259e-09
+      - -8.65681088e-14
+      - -11997.7975
+      - 5.93825672
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1012.42
+    - 5000.0
+  transport:
+    diameter: 4.302
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 1.5
+    well-depth: 252.301
+- composition:
+    C: 1
+    H: 2
+    O: 1
+  name: CH2O(9)
+  note: CH2O(9)
+  thermo:
+    data:
+    - - 4.12927444
+      - -0.00408397173
+      - 2.03227934e-05
+      - -1.83522494e-08
+      - 5.37968433e-12
+      - -14429.4638
+      - 3.2241975
+    - - 2.21174394
+      - 0.00794262445
+      - -3.34191224e-06
+      - 6.28467142e-10
+      - -4.40427951e-14
+      - -14297.4541
+      - 11.3047879
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1070.44
+    - 5000.0
+  transport:
+    diameter: 3.59
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 2.0
+    well-depth: 498.002
+- composition:
+    C: 1
+    H: 3
+  name: CH3(10)
+  note: CH3(10)
+  thermo:
+    data:
+    - - 3.96043207
+      - 0.000592926692
+      - 8.78580229e-06
+      - -9.88037299e-09
+      - 3.63237783e-12
+      - 16421.8817
+      - 0.339861761
+    - - 3.0951129
+      - 0.00555429655
+      - -1.88158709e-06
+      - 3.1333463e-10
+      - -2.0519484e-14
+      - 16542.6189
+      - 4.20297326
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 697.61
+    - 5000.0
+  transport:
+    diameter: 3.8
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    well-depth: 144.001
+- composition:
+    C: 3
+    H: 8
+  name: C3H8(11)
+  note: C3H8(11)
+  thermo:
+    data:
+    - - 3.06333162
+      - 0.0129218175
+      - 3.47019889e-05
+      - -4.70929096e-08
+      - 1.71376767e-11
+      - -14390.5776
+      - 10.7836665
+    - - 5.60451848
+      - 0.0219526774
+      - -8.22069003e-06
+      - 1.50101249e-09
+      - -1.05633081e-13
+      - -15839.4533
+      - -6.22689747
+    model: NASA7
+    note: 'Thermo library: DFT_QCI_thermo'
+    temperature-ranges:
+    - 100.0
+    - 990.0
+    - 5000.0
+  transport:
+    diameter: 4.982
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 1.0
+    well-depth: 266.801
+- composition:
+    H: 1
+  name: H(12)
+  note: H(12)
+  thermo:
+    data:
+    - - 2.5
+      - -3.01680531e-12
+      - 3.74582141e-15
+      - -1.50856878e-18
+      - 1.86626471e-22
+      - 25474.2178
+      - -0.444972899
+    - - 4.28461071
+      - -0.00145494649
+      - 4.44804306e-07
+      - -6.04359642e-11
+      - 3.07921551e-15
+      - 23723.0923
+      - -11.8931307
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 4879.8
+    - 5000.0
+  transport:
+    diameter: 2.05
+    geometry: atom
+    model: gas
+    note: GRI-Mech
+    well-depth: 145.0
+- composition:
+    C: 2
+    H: 5
+  name: C2H5(13)
+  note: C2H5(13)
+  thermo:
+    data:
+    - - 3.68745362
+      - 0.00306903728
+      - 2.55868151e-05
+      - -2.9407011e-08
+      - 9.94048651e-12
+      - 13115.3653
+      - 6.96689071
+    - - 3.5378597
+      - 0.0137310796
+      - -5.29559811e-06
+      - 9.71471485e-10
+      - -6.80280075e-14
+      - 12635.158
+      - 5.15538097
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1006.87
+    - 5000.0
+  transport:
+    diameter: 4.302
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 1.5
+    well-depth: 252.301
+- composition:
+    C: 1
+    H: 4
+    O: 1
+  name: CH3OH(14)
+  note: CH3OH(14)
+  thermo:
+    data:
+    - - 3.84006541
+      - 0.00138238147
+      - 1.91668527e-05
+      - -2.01570364e-08
+      - 6.39109354e-12
+      - -25608.3089
+      - 5.90976964
+    - - 2.79182744
+      - 0.0115828112
+      - -4.51553413e-06
+      - 8.21210187e-10
+      - -5.6706612e-14
+      - -25721.1607
+      - 9.41070357
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1035.75
+    - 5000.0
+  transport:
+    diameter: 3.626
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 1.0
+    well-depth: 481.802
+- composition:
+    C: 1
+    H: 1
+    O: 1
+  name: HCO(15)
+  note: HCO(15)
+  thermo:
+    data:
+    - - 4.05936488
+      - -0.00173847366
+      - 9.14984065e-06
+      - -8.01135179e-09
+      - 2.25738698e-12
+      - 3843.77614
+      - 3.32449412
+    - - 3.0513567
+      - 0.0041170728
+      - -1.75586905e-06
+      - 3.29303911e-10
+      - -2.2917492e-14
+      - 3930.08152
+      - 7.67467218
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1112.1
+    - 5000.0
+  transport:
+    diameter: 3.59
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    well-depth: 498.002
+- composition:
+    C: 2
+    H: 4
+    O: 1
+  name: CH3CHO(16)
+  note: CH3CHO(16)
+  thermo:
+    data:
+    - - 3.57992412
+      - 0.00518983303
+      - 2.26897556e-05
+      - -2.7374272e-08
+      - 9.28480001e-12
+      - -21369.7374
+      - 8.96971515
+    - - 4.08563839
+      - 0.0139061205
+      - -5.59370236e-06
+      - 1.04609279e-09
+      - -7.38738642e-14
+      - -22039.1342
+      - 3.76801799
+    model: NASA7
+    note: 'Thermo library: DFT_QCI_thermo'
+    temperature-ranges:
+    - 100.0
+    - 1028.81
+    - 5000.0
+  transport:
+    diameter: 3.97
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 2.0
+    well-depth: 436.001
+- composition:
+    H: 1
+    O: 1
+  name: OH(17)
+  note: OH(17)
+  thermo:
+    data:
+    - - 3.51456839
+      - 2.92734292e-05
+      - -5.32150598e-07
+      - 1.01947521e-09
+      - -3.85939405e-13
+      - 3414.25418
+      - 2.10434756
+    - - 3.07193724
+      - 0.000604019839
+      - -1.3980593e-08
+      - -2.13440813e-11
+      - 2.48061367e-15
+      - 3579.38792
+      - 4.57801469
+    model: NASA7
+    note: 'Thermo library: primaryThermoLibrary'
+    temperature-ranges:
+    - 100.0
+    - 1145.76
+    - 5000.0
+  transport:
+    diameter: 2.75
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    well-depth: 80.0
+- composition:
+    C: 2
+    H: 4
+  name: C2H4(18)
+  note: C2H4(18)
+  thermo:
+    data:
+    - - 3.97470131
+      - -0.00475826458
+      - 4.16777352e-05
+      - -4.51383971e-08
+      - 1.54221033e-11
+      - 4915.40809
+      - 3.62436102
+    - - 3.55666148
+      - 0.0110626517
+      - -4.17013598e-06
+      - 7.85573786e-10
+      - -5.70050038e-14
+      - 4320.44177
+      - 2.17688329
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 979.36
+    - 5000.0
+  transport:
+    diameter: 3.971
+    geometry: nonlinear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 1.5
+    well-depth: 280.801
+- composition:
+    C: 2
+    H: 4
+  name: CH3CH(19)
+  note: CH3CH(19)
+  thermo:
+    data:
+    - - 3.82362693
+      - -0.000909524648
+      - 3.21380397e-05
+      - -3.73480103e-08
+      - 1.33090621e-11
+      - 41371.3807
+      - 7.10947614
+    - - 4.30486414
+      - 0.00943069145
+      - -3.27558933e-06
+      - 5.95122108e-10
+      - -4.27307267e-14
+      - 40709.1457
+      - 1.8420349
+    model: NASA7
+    note: 'Thermo library: DFT_QCI_thermo'
+    temperature-ranges:
+    - 100.0
+    - 960.81
+    - 5000.0
+  transport:
+    diameter: 4.878
+    geometry: nonlinear
+    model: gas
+    note: Epsilon & sigma estimated with Tc=401.92 K, Pc=50.3 bar (from Joback method)
+    well-depth: 309.48
+- composition:
+    C: 1
+    H: 3
+    O: 2
+  name: CH3OO(20)
+  note: CH3OO(20)
+  thermo:
+    data:
+    - - 3.58601551
+      - 0.00615340433
+      - 1.33272147e-05
+      - -1.76585177e-08
+      - 6.13226209e-12
+      - 248.233263
+      - 9.74093531
+    - - 4.35019035
+      - 0.010718382
+      - -4.26218191e-06
+      - 7.89585637e-10
+      - -5.5385235e-14
+      - -309.796253
+      - 4.08946553
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1031.34
+    - 5000.0
+  transport:
+    diameter: 3.69
+    dipole: 1.7
+    geometry: nonlinear
+    model: gas
+    note: NOx2018
+    rotational-relaxation: 2.0
+    well-depth: 417.0
+- composition:
+    C: 2
+    H: 4
+  name: '[CH]C(48)'
+  note: '[CH]C(48)'
+  thermo:
+    data:
+    - - 3.36869663
+      - 0.0164231793
+      - -2.16500891e-05
+      - 2.18223788e-08
+      - -8.70162208e-12
+      - 42868.2836
+      - 21.8539141
+    - - 2.62343783
+      - 0.0138429343
+      - -6.25542291e-06
+      - 1.16703749e-09
+      - -7.95361914e-14
+      - 43212.8719
+      - 26.6158707
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 846.11
+    - 5000.0
+  transport:
+    diameter: 4.443
+    geometry: nonlinear
+    model: gas
+    note: Epsilon & sigma estimated with fixed Lennard Jones Parameters. This is the
+      fallback method! Try improving transport databases!
+    well-depth: 110.7
+- composition:
+    C: 1
+    H: 1
+    O: 2
+  name: CHO2(83)
+  note: O=[C]O(83)
+  thermo:
+    data:
+    - - 3.57769634
+      - 0.00499224319
+      - 1.17083784e-05
+      - -1.99882983e-08
+      - 8.20562017e-12
+      - -23396.5408
+      - 8.08905129
+    - - 6.82915426
+      - 0.00224155117
+      - -7.19488266e-07
+      - 1.57572417e-10
+      - -1.36959911e-14
+      - -24522.6398
+      - -10.067065
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 964.14
+    - 5000.0
+  transport:
+    diameter: 3.59
+    geometry: nonlinear
+    model: gas
+    note: NOx2018
+    rotational-relaxation: 2.0
+    well-depth: 498.0
+- composition:
+    C: 1
+    H: 1
+    O: 2
+  name: CHO2(100)
+  note: '[O]C=O(100)'
+  thermo:
+    data:
+    - - 3.5669372
+      - 0.00737391605
+      - 1.23411182e-06
+      - -6.05191554e-09
+      - 2.52686502e-12
+      - -16668.2341
+      - 8.24684437
+    - - 5.5146748
+      - 0.00487385333
+      - -2.12203756e-06
+      - 4.14215977e-10
+      - -2.9987849e-14
+      - -17352.3979
+      - -2.54568842
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1057.62
+    - 5000.0
+  transport:
+    diameter: 3.59
+    geometry: nonlinear
+    model: gas
+    note: NOx2018
+    rotational-relaxation: 2.0
+    well-depth: 498.0
+- composition:
+    C: 2
+    H: 2
+  name: C#C(176)
+  note: C#C(176)
+  thermo:
+    data:
+    - - 3.11332864
+      - 0.00602047245
+      - 5.33072422e-06
+      - -1.10298922e-08
+      - 4.62884415e-12
+      - 26217.9841
+      - 4.37934972
+    - - 5.02074554
+      - 0.00422475842
+      - -1.42003377e-06
+      - 2.56112833e-10
+      - -1.84551278e-14
+      - 25566.6322
+      - -6.22570653
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 962.8
+    - 5000.0
+  transport:
+    diameter: 4.1
+    geometry: linear
+    model: gas
+    note: GRI-Mech
+    rotational-relaxation: 2.5
+    well-depth: 209.001
+- composition:
+    C: 2
+    H: 2
+  name: C2H2(183)
+  note: '[C]=C(183)'
+  thermo:
+    data:
+    - - 3.71873947
+      - 0.00529666671
+      - 4.84652969e-07
+      - -2.870689e-09
+      - 1.13838383e-12
+      - 48194.3574
+      - 3.98323394
+    - - 4.27652668
+      - 0.00508092047
+      - -1.90203137e-06
+      - 3.35275243e-10
+      - -2.26452705e-14
+      - 47970.7154
+      - 0.760863198
+    model: NASA7
+    note: 'Thermo library: thermo_DFT_CCSDTF12_BAC'
+    temperature-ranges:
+    - 100.0
+    - 1056.31
+    - 5000.0
+  transport:
+    diameter: 4.1
+    geometry: nonlinear
+    model: gas
+    note: NOx2018
+    rotational-relaxation: 2.5
+    well-depth: 209.0
+- composition:
+    X: 1
+  name: X(1)
+  thermo:
+    data:
+    - - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 3000.0
+- composition:
+    H: 1
+    X: 1
+  name: HX(21)
+  thermo:
+    data:
+    - - -2.07570125
+      - 0.0173580835
+      - -2.60920784e-05
+      - 1.89282268e-08
+      - -5.38835643e-12
+      - -3166.18959
+      - 8.15361518
+    - - 2.72248139
+      - -0.00106817206
+      - 1.9865379e-06
+      - -1.12048461e-09
+      - 2.09811636e-13
+      - -4218.23896
+      - -15.320747
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    O: 2
+    X: 1
+  name: CO2X(22)
+  thermo:
+    data:
+    - - 2.00959799
+      - 0.0133597565
+      - -1.62303912e-05
+      - 1.10029585e-08
+      - -3.14484723e-12
+      - -52781.8299
+      - -2.58903014
+    - - 6.98298591
+      - -0.00309871776
+      - 5.62883251e-06
+      - -3.07847525e-09
+      - 5.62449215e-13
+      - -54033.4894
+      - -27.6481272
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    O: 1
+    X: 1
+  name: COX(23)
+  thermo:
+    data:
+    - - 1.42895
+      - 0.0140374509
+      - -2.2117892e-05
+      - 1.78659581e-08
+      - -5.71478802e-12
+      - -34568.8484
+      - -7.78265517
+    - - 5.48656312
+      - -0.00168118543
+      - 3.0903031e-06
+      - -1.71186643e-09
+      - 3.15864598e-13
+      - -35481.5495
+      - -27.6788365
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    O: 1
+    X: 1
+  name: OX(24)
+  thermo:
+    data:
+    - - -0.294475701
+      - 0.0144162624
+      - -2.61322704e-05
+      - 2.19005957e-08
+      - -6.9801942e-12
+      - -16461.9234
+      - -0.199445623
+    - - 2.90244691
+      - -0.000338584457
+      - 6.43372619e-07
+      - -3.6632666e-10
+      - 6.90093884e-14
+      - -17049.7471
+      - -15.2559728
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    H: 2
+    X: 1
+  name: CH2X(25)
+  thermo:
+    data:
+    - - -2.23006757
+      - 0.0292222928
+      - -4.33154923e-05
+      - 3.31428193e-08
+      - -9.96471308e-12
+      - -222.255986
+      - 8.30173205
+    - - 6.83459954
+      - -0.00514926339
+      - 9.15491022e-06
+      - -4.84917377e-09
+      - 8.63766547e-13
+      - -2258.97684
+      - -36.2215373
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    H: 3
+    X: 1
+  name: CH3X(26)
+  thermo:
+    data:
+    - - -0.044454906
+      - 0.0194367665
+      - -1.91028733e-05
+      - 1.11269371e-08
+      - -2.73735895e-12
+      - -6388.03762
+      - -0.173375969
+    - - 8.65704524
+      - -0.00790307778
+      - 1.40100438e-05
+      - -7.40016074e-09
+      - 1.31516592e-12
+      - -8635.98517
+      - -44.3352558
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    H: 1
+    X: 1
+  name: CHX(27)
+  thermo:
+    data:
+    - - -2.66805027
+      - 0.0290693485
+      - -4.82653552e-05
+      - 3.87589256e-08
+      - -1.19749384e-11
+      - -2918.15541
+      - 9.72941427
+    - - 4.90429859
+      - -0.00263865042
+      - 4.71729273e-06
+      - -2.51267002e-09
+      - 4.49659283e-13
+      - -4464.40812
+      - -26.7107945
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    X: 1
+  name: CX(28)
+  thermo:
+    data:
+    - - -1.94350915
+      - 0.0197767398
+      - -3.36336641e-05
+      - 2.69027201e-08
+      - -8.27959229e-12
+      - 7000.56568
+      - 7.17469909
+    - - 2.81347137
+      - -0.000693951702
+      - 1.30307929e-06
+      - -7.38700347e-10
+      - 1.38795827e-13
+      - 6060.0273
+      - -15.5738286
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    H: 2
+    X: 1
+  name: H2X(29)
+  thermo:
+    data:
+    - - 3.86406413
+      - 0.000753456449
+      - -1.65571442e-06
+      - 1.55223217e-09
+      - -4.4678226e-13
+      - -1689.27505
+      - -8.85806531
+    - - 4.06879652
+      - -0.000495806734
+      - 6.59234335e-07
+      - -1.72597715e-10
+      - 7.62965383e-15
+      - -1700.70035
+      - -9.71917749
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    H: 1
+    O: 1
+    X: 1
+  name: OHX(30)
+  thermo:
+    data:
+    - - 1.42359828
+      - 0.0157830409
+      - -2.91659307e-05
+      - 2.50432531e-08
+      - -8.04088046e-12
+      - -18999.3029
+      - -3.15230478
+    - - 5.03574444
+      - -0.00134422013
+      - 2.25915779e-06
+      - -1.08547653e-09
+      - 1.77875516e-13
+      - -19634.4169
+      - -20.0345222
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    H: 2
+    O: 1
+    X: 1
+  name: H2OX(31)
+  thermo:
+    data:
+    - - 2.72971388
+      - 0.00871051652
+      - -1.29131826e-05
+      - 1.07295e-08
+      - -3.39433689e-12
+      - -32612.6997
+      - -6.04479516
+    - - 5.8549628
+      - -0.00328847412
+      - 5.56990501e-06
+      - -2.73008086e-09
+      - 4.55898028e-13
+      - -33304.6343
+      - -21.3518349
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    H: 1
+    O: 1
+    X: 1
+  name: CHOX(32)
+  thermo:
+    data:
+    - - 1.33925015
+      - 0.0156187879
+      - -1.78706053e-05
+      - 1.16103367e-08
+      - -3.20827392e-12
+      - -28040.1952
+      - -4.27823196
+    - - 7.47250182
+      - -0.00425652358
+      - 7.67240272e-06
+      - -4.1509429e-09
+      - 7.52057428e-13
+      - -29601.8735
+      - -35.2777491
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    H: 1
+    O: 1
+    X: 1
+  name: O[C]#[Pt](88)
+  thermo:
+    data:
+    - - 0.281392618
+      - 0.0236060988
+      - -3.32958929e-05
+      - 2.35937581e-08
+      - -6.59988036e-12
+      - -30449.908
+      - -2.84937962
+    - - 7.57277703
+      - -0.00316578469
+      - 5.61811938e-06
+      - -2.96831946e-09
+      - 5.2868399e-13
+      - -32111.8815
+      - -38.8297167
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    O: 1
+    X: 2
+  name: C2OX2(94)
+  sites: 2.0
+  thermo:
+    data:
+    - - 0.897583218
+      - 0.0246743148
+      - -3.70136199e-05
+      - 2.82073318e-08
+      - -8.56860763e-12
+      - -19357.9676
+      - -4.67313316
+    - - 8.1781755
+      - -0.00274871719
+      - 5.05296264e-06
+      - -2.80344383e-09
+      - 5.18025206e-13
+      - -21013.8707
+      - -40.5106752
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 1
+    H: 2
+    O: 1
+    X: 1
+  name: CH2OX(119)
+  thermo:
+    data:
+    - - -0.500706212
+      - 0.0203875126
+      - -1.83412371e-05
+      - 8.05213048e-09
+      - -1.17601762e-12
+      - -26303.9895
+      - 7.4226431
+    - - 8.40355286
+      - -0.00656451064
+      - 1.17183592e-05
+      - -6.25846821e-09
+      - 1.12274887e-12
+      - -28634.206
+      - -37.9680665
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    H: 2
+    X: 2
+  name: C2H2X2(123)
+  sites: 2.0
+  thermo:
+    data:
+    - - -1.79815684
+      - 0.0326996376
+      - -4.25662573e-05
+      - 2.91542676e-08
+      - -8.0358567e-12
+      - -2412.79838
+      - 5.84807669
+    - - 9.43023108
+      - -0.00645957592
+      - 1.15448998e-05
+      - -6.16905671e-09
+      - 1.10713611e-12
+      - -5096.39939
+      - -50.1225511
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    H: 2
+    X: 1
+  name: C2H2X(124)
+  thermo:
+    data:
+    - - 0.353720415
+      - 0.0273804858
+      - -3.86126272e-05
+      - 2.92701452e-08
+      - -8.86074894e-12
+      - 12563.114
+      - -2.85681996
+    - - 9.50738185
+      - -0.0059652088
+      - 1.06150068e-05
+      - -5.63034056e-09
+      - 1.00413592e-12
+      - 10425.233
+      - -48.1889215
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    H: 2
+    X: 2
+  name: C2H2X2(126)
+  sites: 2.0
+  thermo:
+    data:
+    - - -3.12098801
+      - 0.0394849074
+      - -5.4671378e-05
+      - 3.87299954e-08
+      - -1.08911005e-11
+      - 451.944481
+      - 11.1984198
+    - - 9.50734934
+      - -0.00629448074
+      - 1.12600196e-05
+      - -6.02346339e-09
+      - 1.08201133e-12
+      - -2470.08905
+      - -51.2968133
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    H: 1
+    X: 2
+  name: C2HX2(127)
+  sites: 2.0
+  thermo:
+    data:
+    - - -0.590352229
+      - 0.028202941
+      - -4.31920779e-05
+      - 3.32067162e-08
+      - -1.00161719e-11
+      - 14562.2398
+      - 0.224767212
+    - - 7.59299131
+      - -0.00351002045
+      - 6.29100233e-06
+      - -3.36852902e-09
+      - 6.05610928e-13
+      - 12760.4716
+      - -39.7960433
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    X: 2
+  name: C2X2(129)
+  sites: 2.0
+  thermo:
+    data:
+    - - 0.257614736
+      - 0.0193811681
+      - -2.99692178e-05
+      - 2.27772298e-08
+      - -6.82679954e-12
+      - 24931.8311
+      - -2.70419665
+    - - 5.60814537
+      - -0.00142377339
+      - 2.64198198e-06
+      - -1.48289867e-09
+      - 2.76540004e-13
+      - 23757.7354
+      - -28.8541367
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+- composition:
+    C: 2
+    H: 1
+    X: 1
+  name: C#[C][Pt](170)
+  thermo:
+    data:
+    - - 3.07580134
+      - 0.00716048173
+      - 8.05474397e-07
+      - -7.76888751e-09
+      - 4.04563415e-12
+      - 23754.7749
+      - -14.5587038
+    - - 5.52093498
+      - 0.00215791404
+      - -4.10817408e-07
+      - 4.84256045e-11
+      - -3.19974835e-15
+      - 23071.6778
+      - -27.4320561
+    model: NASA7
+    note: 'Gas phase thermo for HC2 from Thermo library: thermo_DFT_CCSDTF12_BAC.
+      Adsorption correction: + Thermo group additivity estimation:
+
+      adsorptionPt111(C*)'
+    temperature-ranges:
+    - 100.0
+    - 910.38
+    - 5000.0
+- composition:
+    C: 2
+    H: 2
+    X: 1
+  name: C#C.[Pt](177)
+  thermo:
+    data:
+    - - 0.472394638
+      - 0.0277615066
+      - -4.4882533e-05
+      - 3.68137777e-08
+      - -1.16132416e-11
+      - 20536.2649
+      - 2.41179267
+    - - 8.5322849
+      - -0.0049378126
+      - 8.6408175e-06
+      - -4.46203746e-09
+      - 7.78651886e-13
+      - 18825.4924
+      - -36.6656813
+    model: NASA7
+    note: 'Thermo library: surfaceThermoPt111'
+    temperature-ranges:
+    - 298.0
+    - 1000.0
+    - 2000.0
+surface1-reactions:
+- duplicate: false
+  equation: O2(3) + 2 X(1) <=> 2 OX(24)
+  sticking-coefficient:
+    A: 0.06015
+    Ea0: 14.996480025558368
+    b: 0.001
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CO(7) + X(1) <=> COX(23)
+  sticking-coefficient:
+    A: 0.5
+    Ea0: 9.745148393794311
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: H2(6) + 2 X(1) <=> 2 HX(21)
+  sticking-coefficient:
+    A: 0.046
+    Ea0: 3.150243418799906
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CO2(4) + X(1) <=> CO2X(22)
+  sticking-coefficient:
+    A: 0.005
+    Ea0: 2.1950556680447777
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: COX(23) + OX(24) <=> CO2X(22) + X(1)
+  rate-constant:
+    A: 3.7e+21
+    Ea0: 29.990928156021145
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + HX(21) <=> CH3X(26) + X(1)
+  rate-constant:
+    A: 3.09e+22
+    Ea0: 1.268026582818565
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH3X(26) + HX(21) <=> CH4(2) + 2 X(1)
+  rate-constant:
+    A: 3.3e+21
+    Ea0: 12.009721905718106
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + X(1) <=> CHX(27) + HX(21)
+  rate-constant:
+    A: 7.3100000000000005e+22
+    Ea0: 19.61581090082174
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: COX(23) + X(1) <=> CX(28) + OX(24)
+  rate-constant:
+    A: 3.7e+19
+    Ea0: 25.81549621268336
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHX(27) + X(1) <=> CX(28) + HX(21)
+  rate-constant:
+    A: 3.09e+22
+    Ea0: 3.2452062507720374
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CX(28) + H2(6) <=> CH2X(25)
+  sticking-coefficient:
+    A: 0.04
+    Ea0: 13.061187896646768
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CH4(2) + OX(24) + X(1) <=> CH3X(26) + OHX(30)
+  rate-constant:
+    A: 5.000000000000001e+18
+    Ea0: 8.714094132035823
+    b: 0.7
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: COX(23) + OHX(30) <=> CO2X(22) + HX(21)
+  rate-constant:
+    A: 1.0e+19
+    Ea0: 12.172440149940964
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: OHX(30) + X(1) <=> HX(21) + OX(24)
+  rate-constant:
+    A: 7.39e+19
+    Ea0: 19.67060218263013
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH4(2) + OHX(30) + X(1) <=> CH3X(26) + H2OX(31)
+  sticking-coefficient:
+    A: 1.0
+    Ea0: 9.807941307688376
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: H2O(5) + X(1) <=> H2OX(31)
+  sticking-coefficient:
+    A: 0.75
+    Ea0: 1.201343567704488
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: H2OX(31) + X(1) <=> HX(21) + OHX(30)
+  rate-constant:
+    A: 1.15e+19
+    Ea0: 11.829811307634767
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: H2OX(31) + OX(24) <=> 2 OHX(30)
+  rate-constant:
+    A: 1.0e+20
+    Ea0: 5.5506901979865
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: H(12) + X(1) <=> HX(21)
+  sticking-coefficient:
+    A: 0.85
+    Ea0: 13.779597464063013
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CH3(10) + X(1) <=> CH3X(26)
+  sticking-coefficient:
+    A: 0.85
+    Ea0: 11.078536592469893
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: H2(6) + X(1) <=> H2X(29)
+  sticking-coefficient:
+    A: 0.008
+    Ea0: 0.2595691513290395
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: OH(17) + X(1) <=> OHX(30)
+  sticking-coefficient:
+    A: 0.85
+    Ea0: 10.702619283196775
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: HCO(15) + X(1) <=> CHOX(32)
+  sticking-coefficient:
+    A: 0.85
+    Ea0: 14.964839724003278
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CO2(4) + 2 X(1) <=> COX(23) + OX(24)
+  sticking-coefficient:
+    A: 0.02
+    Ea0: 12.37920527931841
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: H2O(5) + 2 X(1) <=> HX(21) + OHX(30)
+  sticking-coefficient:
+    A: 0.2
+    Ea0: 28.153613783910867
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C2H6(8) + 2 X(1) <=> 2 CH3X(26)
+  sticking-coefficient:
+    A: 0.015
+    Ea0: 2.2615013285257946
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CH2O(9) + 2 X(1) <=> CHOX(32) + HX(21)
+  sticking-coefficient:
+    A: 0.2
+    Ea0: 14.061430325819824
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CH2O(9) + 2 X(1) <=> CH2X(25) + OX(24)
+  sticking-coefficient:
+    A: 0.01
+    Ea0: 12.607700569957998
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CH3OH(14) + 2 X(1) <=> CH3X(26) + OHX(30)
+  sticking-coefficient:
+    A: 0.015
+    Ea0: 0.6154970796015673
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: CH3CHO(16) + 2 X(1) <=> CH3X(26) + CHOX(32)
+  sticking-coefficient:
+    A: 0.015
+    Ea0: 9.650197672675985
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C2H4(18) + 2 X(1) <=> 2 CH2X(25)
+  sticking-coefficient:
+    A: 0.01
+    Ea0: 15.354612197210596
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: COX(23) + HX(21) <=> CHOX(32) + X(1)
+  rate-constant:
+    A: 3.14e+21
+    Ea0: 10.813783742392195
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHOX(32) + X(1) <=> CHX(27) + OX(24)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 38.04031068704952
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHX(27) + OHX(30) <=> CH2X(25) + OX(24)
+  rate-constant:
+    A: 4.4e+22
+    Ea0: 3.7629063300792525
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + OHX(30) <=> CH3X(26) + OX(24)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 7.840811987968501
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CX(28) + OHX(30) <=> CHX(27) + OX(24)
+  rate-constant:
+    A: 2.43e+21
+    Ea0: 35.73457348540776
+    b: -0.312
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: H2X(29) + OX(24) <=> HX(21) + OHX(30)
+  rate-constant:
+    A: 4.7826140000000004e+24
+    Ea0: 41.67856774902518
+    b: -0.188
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHOX(32) + OX(24) <=> COX(23) + OHX(30)
+  rate-constant:
+    A: 3.298e+21
+    Ea0: 4.189886870986117
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHOX(32) + CHX(27) <=> CH2X(25) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.544114409837686
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + CHOX(32) <=> CH3X(26) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 25.3048069807017
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHOX(32) + CX(28) <=> CHX(27) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 25.102561375246044
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: COX(23) + H2X(29) <=> CHOX(32) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 25.464222434933088
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHOX(32) + OHX(30) <=> COX(23) + H2OX(31)
+  rate-constant:
+    A: 3.261e+21
+    Ea0: 22.018948444780406
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHX(27) + H2X(29) <=> CH2X(25) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 29.333393404038407
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + H2X(29) <=> CH3X(26) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 37.38715354300974
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CX(28) + H2X(29) <=> CHX(27) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 40.87515437501339
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: 2 CH2X(25) <=> CH3X(26) + CHX(27)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 25.167214122682598
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH3X(26) + CX(28) <=> CH2X(25) + CHX(27)
+  rate-constant:
+    A: 9.894e+21
+    Ea0: 1.9972334315566957
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + CX(28) <=> 2 CHX(27)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 25.302657222223505
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHX(27) + H2OX(31) <=> CH2X(25) + OHX(30)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 7.863852810700399
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + H2OX(31) <=> CH3X(26) + OHX(30)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 21.17531534525727
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CX(28) + H2OX(31) <=> CHX(27) + OHX(30)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 25.80250795027641
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: O[C]#[Pt](88) + X(1) <=> COX(23) + HX(21)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 20.311239846118507
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHX(27) + O[C]#[Pt](88) <=> CH2X(25) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 29.79811451369648
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + O[C]#[Pt](88) <=> CH3X(26) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 21.02154624584039
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CX(28) + O[C]#[Pt](88) <=> CHX(27) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 15.45689776339953
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: OX(24) + O[C]#[Pt](88) <=> COX(23) + OHX(30)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 2.9924830729610363
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: COX(23) + O[C]#[Pt](88) <=> CHOX(32) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 33.024063939397394
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: O[C]#[Pt](88) + X(1) <=> CX(28) + OHX(30)
+  rate-constant:
+    A: 1.46e+24
+    Ea0: 8.86622504710053
+    b: -0.213
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CX(28) + H2OX(31) <=> HX(21) + O[C]#[Pt](88)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 37.25870684018958
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + X(1) <=> CHOX(32) + HX(21)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 19.424019919878894
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + CHX(27) <=> CH2X(25) + CHOX(32)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 32.17648511126681
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + CH2X(25) <=> CH3X(26) + CHOX(32)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.066404188620666
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + X(1) <=> CHX(27) + OHX(30)
+  rate-constant:
+    A: 1.46e+24
+    Ea0: 7.376108157204747
+    b: -0.213
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHX(27) + H2OX(31) <=> CH2OX(119) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 23.833866027473906
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + CX(28) <=> CHOX(32) + CHX(27)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 19.382511483131807
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + OX(24) <=> CHOX(32) + OHX(30)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 1.6651194600740045
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + COX(23) <=> 2 CHOX(32)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 35.24514038196707
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + X(1) <=> HX(21) + O[C]#[Pt](88)
+  rate-constant:
+    A: 3.71e+21
+    Ea0: 3.4678639540756593
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2X(25) + O[C]#[Pt](88) <=> CH2OX(119) + CHX(27)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 23.461818677759847
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + CH2X(25) <=> CH3X(26) + O[C]#[Pt](88)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 25.23385661558719
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: CH2OX(119) + CX(28) <=> CHX(27) + O[C]#[Pt](88)
+  rate-constant:
+    A: 2.43e+21
+    Ea0: 40.74509536061369
+    b: -0.312
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: CH2OX(119) + CX(28) <=> CHX(27) + O[C]#[Pt](88)
+  rate-constant:
+    A: 2.43e+21
+    Ea0: 40.74509536061369
+    b: -0.312
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: H2X(29) + O[C]#[Pt](88) <=> CH2OX(119) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 28.319701618005094
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: OHX(30) + O[C]#[Pt](88) <=> CH2OX(119) + OX(24)
+  rate-constant:
+    A: 4.4e+22
+    Ea0: 5.274028695448878
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: H2OX(31) + O[C]#[Pt](88) <=> CH2OX(119) + OHX(30)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 10.699758211762822
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CHOX(32) + O[C]#[Pt](88) <=> CH2OX(119) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.35523141228397
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: 2 O[C]#[Pt](88) <=> CH2OX(119) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 30.69228769278179
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: CH2OX(119) + CX(28) <=> CHX(27) + O[C]#[Pt](88)
+  rate-constant:
+    A: 2.43e+21
+    Ea0: 40.74509536061369
+    b: -0.312
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: CH2OX(119) + CX(28) <=> CHX(27) + O[C]#[Pt](88)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 25.28133772403297
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: CH2OX(119) + O[C]#[Pt](88) <=> CH2OX(119) + CHOX(32)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 33.024063939397394
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: 2 X(1) + [CH]C(48) <=> CH3X(26) + CHX(27)
+  sticking-coefficient:
+    A: 0.015
+    Ea0: 30.018645291213016
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: true
+  equation: 2 X(1) + [CH]C(48) <=> CH3X(26) + CHX(27)
+  sticking-coefficient:
+    A: 0.0075
+    Ea0: 30.018645291213016
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: true
+  equation: 2 X(1) + [CH]C(48) <=> CH3X(26) + CHX(27)
+  sticking-coefficient:
+    A: 0.0075
+    Ea0: 30.018645291213016
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) <=> 2 CX(28)
+  rate-constant:
+    A: 4220000000000.0
+    Ea0: 35.28237502114922
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) <=> CHX(27) + CX(28)
+  rate-constant:
+    A: 1300000000000.0
+    Ea0: 28.203571539537187
+    b: 0.126
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + X(1) <=> C2X2(129) + HX(21)
+  rate-constant:
+    A: 2.375e+21
+    Ea0: 8.646170871836489
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + CH2X(25) <=> C2HX2(127) + CHX(27)
+  rate-constant:
+    A: 1.672e+22
+    Ea0: 25.294389207798464
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + CH3X(26) <=> C2HX2(127) + CH2X(25)
+  rate-constant:
+    A: 1.9788e+22
+    Ea0: 2.240616797992279
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2X2(129) + CHX(27) <=> C2HX2(127) + CX(28)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 23.85971266398347
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2X2(129) + CHX(27) <=> C2HX2(127) + CX(28)
+  rate-constant:
+    A: 8.8e+22
+    Ea0: 10.623491088899105
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + H2X(29) <=> C2HX2(127) + HX(21)
+  rate-constant:
+    A: 1.18192e+19
+    Ea0: 41.29444910711827
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + OHX(30) <=> C2HX2(127) + OX(24)
+  rate-constant:
+    A: 2.78e+21
+    Ea0: 11.243126824519383
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + H2OX(31) <=> C2HX2(127) + OHX(30)
+  rate-constant:
+    A: 1.18192e+19
+    Ea0: 26.334787589809057
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + CHOX(32) <=> C2HX2(127) + COX(23)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 25.050806536164846
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + O[C]#[Pt](88) <=> C2HX2(127) + COX(23)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 14.595142099375614
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + CH2OX(119) <=> C2HX2(127) + O[C]#[Pt](88)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 25.261640746445813
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + CH2OX(119) <=> C2HX2(127) + CHOX(32)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 18.73103246008205
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2X2(129) + CHX(27) <=> C2HX2(127) + CX(28)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 23.85971266398347
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2X2(129) + CHX(27) <=> C2HX2(127) + CX(28)
+  rate-constant:
+    A: 8.8e+22
+    Ea0: 10.623491088899105
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#[C][Pt](170) + 2 X(1) <=> C2X2(129) + HX(21)
+  rate-constant:
+    A: 9.283333e+28
+    Ea0: 13.397960943764295
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#[C][Pt](170) + X(1) <=> C2HX2(127)
+  rate-constant:
+    A: 1.0e+21
+    Ea0: 4.706855358880869
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2H2X2(126) <=> 2 CHX(27)
+  rate-constant:
+    A: 7930000000000.0
+    Ea0: 27.4823004192283
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + HX(21) <=> C2H2X2(126) + X(1)
+  rate-constant:
+    A: 1.66e+21
+    Ea0: 24.613099531996482
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + CH2X(25) <=> C2H2X2(126) + CHX(27)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 25.004646858936276
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + CH3X(26) <=> C2H2X2(126) + CH2X(25)
+  rate-constant:
+    A: 9.894e+21
+    Ea0: 4.2352703923453685
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CHX(27) <=> C2H2X2(126) + CX(28)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.695052182449764
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CHX(27) <=> C2H2X2(126) + CX(28)
+  rate-constant:
+    A: 4.4e+22
+    Ea0: 14.340960321683717
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + H2X(29) <=> C2H2X2(126) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 44.69211006094833
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + OHX(30) <=> C2H2X2(126) + OX(24)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 14.083453239143312
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + H2OX(31) <=> C2H2X2(126) + OHX(30)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 30.52319971365873
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + CHOX(32) <=> C2H2X2(126) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.345649030556082
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + O[C]#[Pt](88) <=> C2H2X2(126) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 8.881974986247345
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + CH2OX(119) <=> C2H2X2(126) + O[C]#[Pt](88)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.866993037525564
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + CH2OX(119) <=> C2H2X2(126) + CHOX(32)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 11.553455465305058
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: 2 C2HX2(127) <=> C2H2X2(126) + C2X2(129)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.612509122273025
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CHX(27) <=> C2H2X2(126) + CX(28)
+  rate-constant:
+    A: 4.4e+22
+    Ea0: 14.340960321683717
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CHX(27) <=> C2H2X2(126) + CX(28)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.695052182449764
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + X(1) <=> C#[C][Pt](170) + HX(21)
+  rate-constant:
+    A: 6.906975e+17
+    Ea0: 16.732957965920576
+    b: 0.883
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + CHX(27) <=> C#[C][Pt](170) + CH2X(25)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 22.816511788589622
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + CH2X(25) <=> C#[C][Pt](170) + CH3X(26)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 31.81549319004341
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + CX(28) <=> C#[C][Pt](170) + CHX(27)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 35.57051862445314
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + OX(24) <=> C#[C][Pt](170) + OHX(30)
+  rate-constant:
+    A: 2.81e+24
+    Ea0: 20.722980360126307
+    b: -0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + OHX(30) <=> C#[C][Pt](170) + H2OX(31)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 20.86798030750791
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + COX(23) <=> C#[C][Pt](170) + CHOX(32)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 18.119368781736434
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + O[C]#[Pt](88) <=> C#[C][Pt](170) + CH2OX(119)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 21.624581634417993
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + C2X2(129) <=> C#[C][Pt](170) + C2HX2(127)
+  rate-constant:
+    A: 1.18192e+19
+    Ea0: 36.01847108831649
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + X(1) <=> C2H2X2(126)
+  rate-constant:
+    A: 1.0e+21
+    Ea0: 9.867240677495506
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + C2HX2(127) <=> C#[C][Pt](170) + C2H2X2(126)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 39.626816119299114
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C(176) + 2 X(1) <=> C#[C][Pt](170) + HX(21)
+  sticking-coefficient:
+    A: 0.1
+    Ea0: 23.287993635105153
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C#C(176) + 2 X(1) <=> C2H2X2(126)
+  sticking-coefficient:
+    A: 0.83
+    Ea0: 12.51660061674806
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C#C(176) + X(1) <=> C#C.[Pt](177)
+  sticking-coefficient:
+    A: 7.0e-06
+    Ea0: 2.8810136665318176
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C2H2(183) + 2 X(1) <=> CH2X(25) + CX(28)
+  sticking-coefficient:
+    A: 0.01
+    Ea0: 39.9146174565982
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: false
+  equation: C2H2X2(123) <=> CH2X(25) + CX(28)
+  rate-constant:
+    A: 4220000000000.0
+    Ea0: 14.519637080260853
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + CH2X(25) <=> C2H2X2(123) + CX(28)
+  rate-constant:
+    A: 2.78e+21
+    Ea0: 19.22898426079277
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + HX(21) <=> C2H2X2(123) + X(1)
+  rate-constant:
+    A: 2.595e+19
+    Ea0: 19.327603033810995
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + CHX(27) <=> C2HX2(127) + CH2X(25)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 45.94054422113883
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CH2X(25) <=> C2H2X2(123) + CHX(27)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 18.920825049440207
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + CH2X(25) <=> C2HX2(127) + CH3X(26)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 39.93423800074889
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + CX(28) <=> C2HX2(127) + CHX(27)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 36.89022498025823
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + H2X(29) <=> C2H2X2(123) + HX(21)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 46.83959233746247
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + OX(24) <=> C2HX2(127) + OHX(30)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 42.64061230566253
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + H2OX(31) <=> C2H2X2(123) + OHX(30)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 33.08319905123769
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + COX(23) <=> C2HX2(127) + CHOX(32)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 48.36673627780525
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + O[C]#[Pt](88) <=> C2H2X2(123) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 10.110870868009998
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + O[C]#[Pt](88) <=> C2HX2(127) + CH2OX(119)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 46.60425320236452
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + CH2OX(119) <=> C2H2X2(123) + CHOX(32)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 8.862580658044628
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + C2X2(129) <=> 2 C2HX2(127)
+  rate-constant:
+    A: 1.672e+22
+    Ea0: 36.50433455559669
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(123) + C2HX2(127) <=> C2H2X2(126) + C2HX2(127)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 33.188827583525324
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C#C.[Pt](177) + C2HX2(127) <=> C#[C][Pt](170) + C2H2X2(123)
+  rate-constant:
+    A: 5.909598e+18
+    Ea0: 41.890750641518004
+    b: 0.996
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2H2(183) + 2 X(1) <=> C2H2X2(123)
+  sticking-coefficient:
+    A: 0.83
+    Ea0: 23.05686835090372
+    b: 0.0
+    w: 239.0057361376673
+  type: sticking-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + OHX(30) <=> C2H2X2(123) + OX(24)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 15.84888356989047
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CHOX(32) <=> C2H2X2(123) + COX(23)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 23.574824211906698
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CH3X(26) <=> C2H2X2(123) + CH2X(25)
+  rate-constant:
+    A: 9.894e+21
+    Ea0: 5.5141576422667775
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CH2X(25) <=> C2H2X2(123) + CHX(27)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 18.920825049440207
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CH2X(25) <=> C2H2X2(123) + CHX(27)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 24.573916955652596
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CHX(27) <=> C2H2X2(123) + CX(28)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 25.046703355067457
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2HX2(127) + CH2OX(119) <=> C2H2X2(123) + O[C]#[Pt](88)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 24.35559943833108
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: 2 C2HX2(127) <=> C2H2X2(123) + C2X2(129)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 24.992742345784574
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: true
+  equation: C2H2X2(126) + C2HX2(127) <=> C2H2X2(123) + C2HX2(127)
+  rate-constant:
+    A: 8.36e+21
+    Ea0: 24.34688371466386
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2H2X(124) + X(1) <=> CH2X(25) + CX(28)
+  rate-constant:
+    A: 4.18e+21
+    Ea0: 26.96909483669297
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2H2X(124) + 2 X(1) <=> C2HX2(127) + HX(21)
+  rate-constant:
+    A: 1.856667e+29
+    Ea0: 12.426592667571278
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2H2X(124) + X(1) <=> C2H2X2(123)
+  rate-constant:
+    A: 1.0e+21
+    Ea0: 7.420754131765496
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2OX2(94) <=> COX(23) + CX(28)
+  rate-constant:
+    A: 4220000000000.0
+    Ea0: 32.574371677131595
+    b: 0.0
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2X2(129) + COX(23) <=> C2OX2(94) + CX(28)
+  rate-constant:
+    A: 2.78e+21
+    Ea0: 7.353154229058763
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2HX2(127) + COX(23) <=> C2OX2(94) + CHX(27)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 6.944302373467402
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+- duplicate: false
+  equation: C2OX2(94) + CH2X(25) <=> C2H2X2(123) + COX(23)
+  rate-constant:
+    A: 1.39e+21
+    Ea0: 17.239554720878886
+    b: 0.101
+    w: 239.0057361376673
+  type: interface-Blowers-Masel
+units:
+  activation-energy: kcal/mol
+  length: cm
+  quantity: mol
+  time: s
