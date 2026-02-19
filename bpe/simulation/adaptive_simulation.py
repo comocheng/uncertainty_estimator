@@ -78,7 +78,8 @@ def get_i_thing(ref_composition, phase):
 
 def increase_enthalpy(phase, species_index, increase_enthalpy_J_per_mol):
     """Helper function for increasing the enthalpy of a species in a Cantera phase by a specified amount (in J/mol)"""
-    data_copy = copy.deepcopy(phase.species()[species_index].input_data)
+    #data_copy = copy.deepcopy(phase.species()[species_index].input_data)
+    data_copy = phase.species()[species_index].input_data.copy()
     for i in range(len(data_copy['thermo']['data'])):
         data_copy['thermo']['data'][i][5] += increase_enthalpy_J_per_mol * 1000.0 / ct.gas_constant  # Cantera needs J / kmol
     new_sp = ct.Species().from_dict(data_copy)
@@ -189,6 +190,7 @@ def run_simulation(
     # characteristic_change = []  # values descibing how much chemistry is happening
 
     MIN_CSTR_LENGTH = BASE_INDIVIDUAL_CSTR_LEN
+    MAX_CSTR_LENGTH = 5e-4
 
     # start in the non-catalyst region
     surf.set_multiplier(0.0)
@@ -268,6 +270,7 @@ def run_simulation(
         if sim_dist > 0.0001 and total_change < 0.0001:
             # make the next step bigger
             suggested_sim_length *= 1.5
+            suggested_sim_length = min(suggested_sim_length, MAX_CSTR_LENGTH)
         elif sim_dist > 0.0001 and total_change > 0.02:
             
             if suggested_sim_length < MIN_CSTR_LENGTH:
