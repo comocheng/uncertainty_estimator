@@ -86,7 +86,10 @@ def get_i_thing(ref_composition, phase):
 
 def increase_enthalpy(phase, species_index, increase_enthalpy_J_per_mol):
     """Helper function for increasing the enthalpy of a species in a Cantera phase by a specified amount (in J/mol)"""
-    data_copy = copy.deepcopy(phase.species()[species_index].input_data)
+    if ct.__version__ in ['3.2.0']:
+        data_copy = phase.species()[species_index].input_data.copy()
+    else:    
+        data_copy = copy.deepcopy(phase.species()[species_index].input_data)
     for i in range(len(data_copy['thermo']['data'])):
         data_copy['thermo']['data'][i][5] += increase_enthalpy_J_per_mol * 1000.0 / ct.gas_constant  # Cantera needs J / kmol
     new_sp = ct.Species().from_dict(data_copy)
@@ -111,7 +114,7 @@ def run_simulation(
     surf : cantera.Interface
         Cantera surface object
     surf_thermo_perturb : dict
-        key is index of the species in the surface phase, value is the amount to perturb the enthalpy in J/kmol
+        key is index of the species in the surface phase, value is the amount to perturb the enthalpy in J/mol
     surf_kinetics_perturb : dict
         key is index of the reaction in the surface phase, value is the multiplier to apply to the reaction rate
         
@@ -248,7 +251,7 @@ def run_simulation(
     return gas_out, surf_out, gas_rates, surf_rates
 
 
-def plot_gas_results(gas_out, gas, outfile=None, T_array=None):
+def plot_gas_results(gas_out, gas, outfile=None, T_array=None, show=False):
     """Helper function for plotting the results of the gas phase simulation"""
 
     if isinstance(gas, str):
@@ -273,18 +276,18 @@ def plot_gas_results(gas_out, gas, outfile=None, T_array=None):
     # Simulation Results
     plt.plot(dist_array, gas_out[:, i_O2], label='O2', color=colors[0], linewidth=linewidth2)
     plt.plot(dist_array, gas_out[:, i_CH4], label='CH4', color=colors[1], linewidth=linewidth2)
-    plt.plot(dist_array, gas_out[:, i_CO], label='CO', color=colors[4], linewidth=linewidth2)
-    plt.plot(dist_array, gas_out[:, i_CO2], label='CO2', color=colors[5], linewidth=linewidth2)
-    plt.plot(dist_array, gas_out[:, i_H2], label='H2', color=colors[2], linewidth=linewidth2)
-    plt.plot(dist_array, gas_out[:, i_H2O], label='H2O', color=colors[3], linewidth=linewidth2)
+    plt.plot(dist_array, gas_out[:, i_CO], label='CO', color=colors[2], linewidth=linewidth2)
+    plt.plot(dist_array, gas_out[:, i_CO2], label='CO2', color=colors[3], linewidth=linewidth2)
+    plt.plot(dist_array, gas_out[:, i_H2], label='H2', color=colors[4], linewidth=linewidth2)
+    plt.plot(dist_array, gas_out[:, i_H2O], label='H2O', color=colors[5], linewidth=linewidth2)
 
     # Experimental data
     plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['O2 (mol/min)'].values, linestyle='dashed', label='EXP O2', color=colors[0])
     plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['CH4 (mol/min)'].values, linestyle='dashed', label='EXP CH4', color=colors[1])
-    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['H2 (mol/min)'].values, linestyle='dashed', label='EXP H2', color=colors[2])
-    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['H2O (mol/min)'].values, linestyle='dashed', label='EXP H2O', color=colors[3])
-    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['CO (mol/min)'].values, linestyle='dashed', label='EXP CO', color=colors[4])
-    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['CO2 (mol/min)'].values, linestyle='dashed', label='EXP CO2', color=colors[5])
+    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['CO (mol/min)'].values, linestyle='dashed', label='EXP CO', color=colors[2])
+    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['CO2 (mol/min)'].values, linestyle='dashed', label='EXP CO2', color=colors[3])
+    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['H2 (mol/min)'].values, linestyle='dashed', label='EXP H2', color=colors[4])
+    plt.plot((df['Distance (mm)'].values - 10.0) / 1000.0, df['H2O (mol/min)'].values, linestyle='dashed', label='EXP H2O', color=colors[5])
     
     ax1 = plt.gca()
     ylim = ax1.get_ylim()
@@ -311,7 +314,9 @@ def plot_gas_results(gas_out, gas, outfile=None, T_array=None):
     if outfile:
         plt.savefig(outfile)
     else:
-        plt.show()
+        if show:
+            plt.show()
+    return fig, ax1
 
 
 def plot_top_n(result, phase, n=10, outfile=None, species=True, title=None, xlim=None, ylim=None):
