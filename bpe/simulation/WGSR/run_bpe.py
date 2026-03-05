@@ -1,0 +1,57 @@
+# example script to run Bayesian Parameter Estimation
+# This one lets the user continue where they left off
+import os
+import numpy as np
+import pandas as pd
+import ess
+import sys
+sys.path.append(os.path.join(os.environ['UNCERTAINTY_REPO'], 'bpe', 'simulation', 'WGSR'))  # Cantera simulation
+import wgs_sim_wrapper
+import yaml
+
+
+working_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Load all the experiment + uncertainty csvs
+experiment_df = pd.read_csv(os.path.join(working_dir, 'experiment.csv'))
+observed_data_y = experiment_df.values
+
+experiment_uncertainty_df = pd.read_csv(os.path.join(working_dir, 'experiment_uncertainty.csv'))
+observed_data_y_uncertainties = experiment_uncertainty_df.values
+
+# Load all the prior + uncertainty csvs
+priors_df = pd.read_csv(os.path.join(working_dir, 'priors.csv'))
+priors = priors_df.values
+
+prior_uncertainty_df = pd.read_csv(os.path.join(working_dir, 'priors_uncertainty.csv'))
+prior_uncertainties = prior_uncertainty_df.values
+
+# Load other info for simulation
+sim_info_yaml = os.path.join(working_dir, 'sim_info.yaml')
+with open(sim_info_yaml) as f:
+    sim_info = yaml.safe_load(f)
+parameter_names = sim_info['parameter_names']
+# out_gas_indices = sim_info['out_gas_indices']
+observed_data_x = sim_info['sample_times']
+
+
+optimizer = ess.BPEstimator(
+    wgs_sim_wrapper.simulation_wrapper,
+    priors,
+    prior_uncertainties,
+    observed_data_x,
+    observed_data_y,
+    observed_data_y_uncertainties,
+    results_dir=os.path.join(os.path.dirname(__file__), 'results'),
+    parameter_names=parameter_names,
+    plot_dir=os.path.join(os.path.dirname(__file__), 'plots'),
+    load_save_point=True
+)
+
+
+N_samples = 10
+optimizer.collect_samples(N_samples)
+
+# # # only execute this at the end (don't do these two if you're going to continue and run more)
+# optimizer.compile_and_flatten_chains()
+# optimizer.make_all_plots()
