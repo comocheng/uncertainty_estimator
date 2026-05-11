@@ -1,0 +1,25 @@
+X
+1 X u0 p0 c0
+
+O2
+multiplicity 3
+1 O u1 p2 c0 {2,S}
+2 O u1 p2 c0 {1,S}
+
+
+CO
+1 C u0 p1 c-1 {2,T}
+2 O u0 p1 c+1 {1,T}
+
+
+OX
+1 X u0 p0 c0 {2,D}
+2 O u0 p2 c0 {1,D}
+
+
+OCX
+1 C u0 p0 {2,D} {3,D}
+2 O u0 p2 {1,D} 
+3 X u0 p0 {1,D} 
+
+
