@@ -33,7 +33,7 @@ plt.hist(lnks, alpha=0.5)
 plt.hist(lnks_uniform, alpha=0.5)
 
 # +
-f = 1.0
+f = 0.37611005405161724
 
 print(f'f={f}')
 
@@ -49,6 +49,8 @@ print(f'normal, 95% cutoff ln k = {normal_95}')
 normal_3sigma = f * np.log(10.0) / 3
 print(f'normal, 3sigma cutoff ln k = {normal_3sigma}')
 # -
+
+np.log10(np.exp(0.5 *np.sqrt(3.0)))
 
 np.log10(1.1)
 
@@ -272,34 +274,56 @@ plt.scatter(f_ranks, fs, color=cs)
 
 plt.scatter(ranks, f_from_u95s, marker='*', color=cs_thermo)
 
-plt.yscale('log')
+# plt.yscale('log')
 plt.xlabel('RMG Rank', fontsize=16)
-plt.ylabel('$f$', fontsize=16)
+plt.ylabel('Uncertainty Factor $f$', fontsize=16)
 
 xlims = plt.xlim()
 xticks = plt.xticks()
 
-plt.hlines(xmin=0.5, xmax=1.5, y=0.05, color=colors[0], label='Rank=1', zorder=0, linewidth=0.7)
-plt.hlines(xmin=1.5, xmax=2.5, y=0.1, color=colors[1], label='Rank=2', zorder=0, linewidth=0.7)
-plt.hlines(xmin=2.5, xmax=3.5, y=0.2, color=colors[2], label='Rank=3', zorder=0, linewidth=0.7)
-plt.hlines(xmin=3.5, xmax=4.5, y=0.4, color=colors[3], label='Rank=4', zorder=0, linewidth=0.7)
-plt.hlines(xmin=4.5, xmax=5.5, y=0.5, color=colors[4], label='Rank=5', zorder=0, linewidth=0.7)
-plt.hlines(xmin=5.5, xmax=6.5, y=0.7, color=colors[5], label='Rank=6', zorder=0, linewidth=0.7)
-plt.hlines(xmin=6.5, xmax=7.5, y=1.0, color=colors[6], label='Rank=7', zorder=0, linewidth=0.7)
-plt.hlines(xmin=7.5, xmax=8.5, y=1.5, color=colors[7], label='Rank=8', zorder=0, linewidth=0.7)
-plt.hlines(xmin=8.5, xmax=9.5, y=2.0, color=colors[8], label='Rank=9', zorder=0, linewidth=0.7)
+# Savepoint 6:45PM
+# r1 = 0.05
+# r2 = 0.1
+# r3 = 0.2
+# r4 = 0.4
+# r5 = 0.5
+# r6 = 0.7
+# r7 = 1.0
+# r8 = 1.5
+# r9 = 2.0
+
+
+r1 = 0.05
+r2 = 0.1
+r3 = 0.2
+r4 = 0.3
+r5 = 0.5
+r6 = 0.7
+r7 = 1.0
+r8 = 1.2
+r9 = 1.5
+
+plt.hlines(xmin=0.5, xmax=1.5, y=r1, color=colors[0], label='Rank=1', zorder=0, linewidth=0.7)
+plt.hlines(xmin=1.5, xmax=2.5, y=r2, color=colors[1], label='Rank=2', zorder=0, linewidth=0.7)
+plt.hlines(xmin=2.5, xmax=3.5, y=r3, color=colors[2], label='Rank=3', zorder=0, linewidth=0.7)
+plt.hlines(xmin=3.5, xmax=4.5, y=r4, color=colors[3], label='Rank=4', zorder=0, linewidth=0.7)
+plt.hlines(xmin=4.5, xmax=5.5, y=r5, color=colors[4], label='Rank=5', zorder=0, linewidth=0.7)
+plt.hlines(xmin=5.5, xmax=6.5, y=r6, color=colors[5], label='Rank=6', zorder=0, linewidth=0.7)
+plt.hlines(xmin=6.5, xmax=7.5, y=r7, color=colors[6], label='Rank=7', zorder=0, linewidth=0.7)
+plt.hlines(xmin=7.5, xmax=8.5, y=r8, color=colors[7], label='Rank=8', zorder=0, linewidth=0.7)
+plt.hlines(xmin=8.5, xmax=9.5, y=r9, color=colors[8], label='Rank=9', zorder=0, linewidth=0.7)
 step_color = 'gray'
 
-plt.vlines(x=1.5, ymin=0.05, ymax=0.1, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=2.5, ymin=0.1, ymax=0.2, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=3.5, ymin=0.2, ymax=0.4, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=4.5, ymin=0.4, ymax=0.5, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=5.5, ymin=0.5, ymax=0.7, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=6.5, ymin=0.7, ymax=1.0, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=7.5, ymin=1.0, ymax=1.5, color=step_color, zorder=0, linewidth=0.7)
-plt.vlines(x=8.5, ymin=1.5, ymax=2.0, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=1.5, ymin=r1, ymax=r2, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=2.5, ymin=r2, ymax=r3, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=3.5, ymin=r3, ymax=r4, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=4.5, ymin=r4, ymax=r5, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=5.5, ymin=r5, ymax=r6, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=6.5, ymin=r6, ymax=r7, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=7.5, ymin=r7, ymax=r8, color=step_color, zorder=0, linewidth=0.7)
+plt.vlines(x=8.5, ymin=r8, ymax=r9, color=step_color, zorder=0, linewidth=0.7)
 
-
+plt.ylim([-0.2, 2.2])
 plt.xlim(xlims)
 plt.xticks(xticks[0], xticks[1])
 plt.legend()
